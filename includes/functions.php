@@ -67,56 +67,6 @@ function parse_arg( $key, $array, $default = '' ){
 }
 
 /**
- * Get common enquiries.
- * 
- * @return 	array
- * @since 	0.1
- **/
-function get_common_enquiries(){
-	return array(
-		array(
-			"enquiry" => "How long will I live?",
-			"answers" => array(
-				"lumpectomy" => "In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy).",
-				"mastectomy" => "Same as lumpectomy.",
-				"alternative" => "No good information is available. Ask the practitioner.",
-				"no_treatment" => "Most women will die within 5 years."
-			)
-		),
-
-		array(
-			"enquiry" => "Will the cancer come back?",
-			"answers" => array(
-				"lumpectomy" => "In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy).",
-				"mastectomy" => "Same as lumpectomy.",
-				"alternative" => "No good information is available. Ask the practitioner.",
-				"no_treatment" => "Most women will die within 5 years."
-			)
-		),
-
-		array(
-			"enquiry" => "",
-			"answers" => array(
-				"lumpectomy" => "",
-				"mastectomy" => "",
-				"alternative" => "",
-				"no_treatment" => ""
-			)
-		),
-
-		array(
-			"enquiry" => "How long will I live?",
-			"answers" => array(
-				"lumpectomy" => "In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy).",
-				"mastectomy" => "Same as lumpectomy.",
-				"alternative" => "No good information is available. Ask the practitioner.",
-				"no_treatment" => "Most women will die within 5 years."
-			)
-		)
-	);
-}
-
-/**
  * Prints codes in HTML a <pre> block.
  * 
  * @param 	mixed 	$input 		The thing to print.

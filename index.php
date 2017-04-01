@@ -101,7 +101,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section class="active">
+	<section>
 		<?php init_locale('treatment'); ?>
 		<div class="section-container centralized">
 			<div class="content" style="width:60%">
@@ -181,49 +181,46 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section>
+	<section class="active">
+		<?php init_locale("worries"); ?>
 		<div class="section-container centralized">
 			<div class="content" style="width:40%">
-				<h1>What are you worried about?</h1>
-				<h5 class="subtitle">These questions are common among breast cancer patients. Choose what you're concern about and click continue.</h5>
+				<?php
+				_e( '<h1>%s</h1>', u('header') );
+				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				?>
 
 				<div class="compartment">
 					<div class="white-card">
 						<div class="content text-left">
+							<form method="post" data-invoke="choose_worry">
+							<?php for ( $worry_i=1; $worry_i<=8; $worry_i++ ): $worry_hash = substr(hash('md5', $worry_i), 0, 8); ?>
 							<div class="checkbox">
-								<input type="checkbox" id="0">
-								<label for="0">How long will I live? <small class="light">Cancer is considered cured if it does not come back in 5 years.</small></label>
-							</div>
+								<?php
+								_e( '<input type="checkbox" name="worries[]" value="%1$d" id="%2$s">', $worry_i, $worry_hash );
 
-							<div class="checkbox">
-								<input type="checkbox" id="0">
-								<label for="0">Will the cancer come back</label>
-							</div>
+								$worry_sub = u("enquiry{$worry_i}_sub");
+								$worry_sub = $worry_sub != 'undefined'
+									? __( ' <small class="light">%s</small></label>', $worry_sub )
+									: '';
 
-							<div class="checkbox">
-								<input type="checkbox" id="0">
-								<label for="0">Do I need another operation?</label>
-							</div>
 
-							<div class="checkbox">
-								<input type="checkbox" id="0">
-								<label for="0">Will I get lymphoedema?</label>
+								_e( '<label for="%1$s">%2$s%3$s</label>', $worry_hash, u("enquiry{$worry_i}"), $worry_sub );
+								?>
 							</div>
-
-							<div class="checkbox">
-								<input type="checkbox" id="0">
-								<label for="0">Will I lose my breast?</label>
-							</div>
+							<?php endfor; ?>
 
 							<br class="separator">
 							<div class="btn-action text-right" style="margin-top: 0">
-								<a class="btn btn-green btn-sm">Continue &rarr;</a>
+								<button class="btn btn-green btn-sm"><?php _e('%s &rarr;', u('continue')); ?></button>
 							</div>
+							</form>
 						</div>
 					</div>
-					<?php
-					$enquiry = get_common_enquiries();
-					?>
+
+					<div class="text-right">
+						<a class="btn btn-dark btn-xs" data-invoke="prev_page"><?php _e( '&larr; %s', u('previous') ); ?></a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -55,6 +55,60 @@
 			"alternative_p4":"‘What is the chance of alternative treatment curing breast cancer compared to surgery?’",
 
 			"no_treatment_desc":"You decided not to take any action on the disease."
+		},
+
+		"worries":{
+			"header":"What are you worried about?",
+			"subtitle":"These questions are common among breast cancer patients. Choose what you're concern about and click continue. We will compare your worries with the available treatments to help you make the best decision.",
+
+			"enquiry1":"How long will I live?",
+			"enquiry1_sub":"Cancer is consider cured if it does not come back in 5 years",
+			"enquiry1_lumpectomy":"In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy).",
+			"enquiry1_mastectomy":"Same as lumpectomy.",
+			"enquiry1_alternative":"No good information is available. Ask the practitioner.",
+			"enquiry1_no_treatment":"Most women will die within 5 years.",
+
+			"enquiry2":"Will the cancer come back?",
+			"enquiry2_lumpectomy":"In 8 years, out of 100 women, 10 may have a relapse and 90 may not (with radiotherapy); 39 may have a relapse and 61 may not (without radiotherapy).",
+			"enquiry2_mastectomy":"In 8 years, out of 100 women, 8 may have a relapse on the chest wall and 92 may not.",
+			"enquiry2_alternative":"No good information is available. Ask the practitioner.",
+			"enquiry2_no_treatment":"Most women die within 5 years.",
+
+			"enquiry3":"Will I need another operation?",
+			"enquiry3_lumpectomy":"Maybe, if there are cancer cells remaining. This happens in 20 out of 100 women.",
+			"enquiry3_mastectomy":"No, unless you choose breast reconstruction.",
+			"enquiry3_alternative":"No.",
+			"enquiry3_no_treatment":"No.",
+
+			"enquiry4":"Will I get lymphoedema?",
+			"enquiry4_lumpectomy":"Out of 100 women, 5 may get lymphoedema and 95 may not (with sentinel lymph node biopsy*): 17 may get lymphoedema and 83 may not (with axillary lymph node dissection).",
+			"enquiry4_mastectomy":"Same as lumpectomy.",
+			"enquiry4_alternative":"Not applicable. The cancer may progress and cause lymphoedema.",
+			"enquiry4_no_treatment":"Not applicable. The cancer may progress and cause lymphoedema.",
+
+			"enquiry5":"Will I lose my breast?",
+			"enquiry5_lumpectomy":"No. However, if the tumour margins are involved or if there is a recurrence in the future, a mastectomy will be recommended.",
+			"enquiry5_mastectomy":"Yes. However, you may consider breast reconstruction.",
+			"enquiry5_alternative":"No. However, if the treatment does not work, the breast will become deformed.",
+			"enquiry5_no_treatment":"No. However, when the cancer grows, the breast will become deformed.",
+
+			"enquiry6":"How long will I live?",
+			"enquiry6_lumpectomy":"Yes (depending on oncologist recommendation).",
+			"enquiry6_mastectomy":"Yes (depending on oncologist recommendation).",
+			"enquiry6_alternative":"No.",
+			"enquiry6_no_treatment":"No.",
+
+			"enquiry7":"Is radiotherapy recommended?",
+			"enquiry7_lumpectomy":"Yes.",
+			"enquiry7_mastectomy":"No (unless the axillary lymph nodes are involved or the tumour is very large or involving the margins).",
+			"enquiry7_alternative":"No.",
+			"enquiry7_no_treatment":"No.",
+
+			"enquiry8":"How much does it cost?",
+			"enquiry8_lumpectomy":"Depends on your doctor/nurse.",
+			"enquiry8_mastectomy":"Depends on your doctor/nurse.",
+			"enquiry8_alternative":"Depends on your practitioner.",
+			"enquiry8_no_treatment":"No cost. However, you may need treatment as the cancer grows and this will incur cost."
 		}
 	}
 }
