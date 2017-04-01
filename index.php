@@ -61,7 +61,7 @@ require( dirname(__FILE__) . '/load.php' );
 			<div class="content">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
-				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-xs" data-invoke="prev_page">&larr; Previous page</a></div></h5>', u('subtitle') );
 				?>
 
 				<div class="compartment row">
@@ -93,10 +93,6 @@ require( dirname(__FILE__) . '/load.php' );
 					</div>
 					<?php endfor; ?>
 				</div>
-
-				<div class="btn-action text-right">
-					<a class="btn btn-xs" data-invoke="prev_page"><?php _e('&larr; %s', u('previous')); ?></a>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -107,7 +103,8 @@ require( dirname(__FILE__) . '/load.php' );
 			<div class="content" style="width:60%">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
-				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; Previous page</a></div></h5>',
+					u('subtitle') );
 				?>
 
 				<div class="compartment row masonry">
@@ -172,7 +169,6 @@ require( dirname(__FILE__) . '/load.php' );
 
 					<div class="col-md-6 col-md-offset-3 grid-item">
 						<div class="btn-action text-right">
-							<a class="btn btn-dark btn-sm" data-invoke="prev_page">&larr; Previous page</a>
 							<a class="btn btn-green btn-sm" data-invoke="next_page">Proceed &rarr;</a>
 						</div>
 					</div>
@@ -187,7 +183,7 @@ require( dirname(__FILE__) . '/load.php' );
 			<div class="content" style="width:40%">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
-				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; Previous page</a></div></h5>', u('subtitle') );
 				?>
 
 				<div class="compartment">
@@ -216,10 +212,6 @@ require( dirname(__FILE__) . '/load.php' );
 							</div>
 							</form>
 						</div>
-					</div>
-
-					<div class="text-right">
-						<a class="btn btn-dark btn-xs" data-invoke="prev_page"><?php _e( '&larr; %s', u('previous') ); ?></a>
 					</div>
 				</div>
 			</div>
