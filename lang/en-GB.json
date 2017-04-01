@@ -25,6 +25,36 @@
 			"stage3_desc":"The size of the breast cancer is more than 5cm or it has spread to the skin or chest wall.",
 			"stage4_desc":"The breast cancer has spread to other parts of the body such as lungs, liver, bones and brain.",
 			"severe_alert":"This website does not support stage 3 & 4 breast cancer. If you notice this symptom on your body, please consult with the doctor immediately."
+		},
+		"treatment":{
+			"header":"Treatment options",
+			"subtitle":"These are the available treatment options in your case.",
+			"lumpectomy":"Lumpectomy",
+			"mastectomy":"Mastectomy",
+			"alternative":"Alternative treatment",
+			"no_treatment":"No treatment",
+
+			"lumpectomy_desc":"Most women go for lumpectomy because it helps conserve their breast.",
+			"lumpectomy_p1":"In lumpectomy, only part of the breast is removed. The surgeon will remove the cancer lump and up to 1 cm of the surrounding breast tissue",
+			"lumpectomy_p2":"Cancer cells may move to the lymph nodes in the armpit. If so, they will be removed during the surgery.",
+			"lumpectomy_p3":"After a surgery, a drain is used to remove any fluid or blood that collects under the wound. This drain consists of a soft plastic tube connected to a plastic bottle. It will be removed once there is no more fluid or blood.",
+			"lumpectomy_p4":"Most women can go home within a day or two.",
+			"lumpectomy_p5":"Occasionally, another surgery may be needed if cancer cells are too close to the edge of the tissue removed during lumpectomy. This happens in 20 out of 100 people.",
+
+			"mastectomy_desc":"The whole breast (including the nipple) is removed leaving a flat chest wall with a scar.",
+			"mastectomy_p1":"Most women spend 2-3 nights in hospital. Like lumpectomy, a drain which consists of a soft plastic tube connected to a plastic bottle will be used to remove any fluid or blood collecting under the wound.",
+			"mastectomy_p2":"Some women may consider breast reconstruction surgery where a new breast shape is created. Your surgeon can discuss this further with you.",
+			
+			"alternative_desc1":"Some women prefer alternative treatment such as food supplement, herbal medicine or spiritual healing. So far, there is no good scientific evidence to support using alternative treatment to cure breast cancer.",
+			"alternative_desc2":"Modern medicine is based on scientific evidence while alternative treatment is often based on individual practitioners’ experience.",
+			"alternative_desc3":"It is important to know that most breast cancers grow slowly and do not spread immediately. If the breast cancer does not grow or spread within a few months, it does not mean that the alternative treatment is effective.",
+			"alternative_desc4":"You may want to ask the following questions before considering alternative treatment:",
+			"alternative_p1":"‘Is the alternative practitioner qualified in treating breast cancer?’",
+			"alternative_p2":"‘Is there any scientic information based on human beings (not animals)?’",
+			"alternative_p3":"‘If there are claims that a person is cured, ask whether is it a breast cancer or a benign breast lump?’",
+			"alternative_p4":"‘What is the chance of alternative treatment curing breast cancer compared to surgery?’",
+
+			"no_treatment_desc":"You decided not to take any action on the disease."
 		}
 	}
 }

@@ -35,7 +35,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div> -->
 	</div>
 
-	<section class="active" style="background-image:url(images/ian-schneider-39678.jpg); color:#eee !important">
+	<section style="background-image:url(images/ian-schneider-39678.jpg); color:#eee !important">
 		<?php init_locale('main'); ?>
 		<div class="main-overlay centralized">
 			<div class="content animated fadeIn">
@@ -101,76 +101,74 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section>
+	<section class="active">
+		<?php init_locale('treatment'); ?>
 		<div class="section-container centralized">
 			<div class="content" style="width:60%">
-				<h1>Treatment options</h1>
-				<h5 class="subtitle">These are the available treatment options for your case.</h5>
+				<?php
+				_e( '<h1>%s</h1>', u('header') );
+				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				?>
 
 				<div class="compartment row masonry">
-					<div class="col-md-6 col-md-offset-3 grid-item">
-						<div class="white-card hoverable">
-							<div class="content text-left">
-								<h4><span class="num-badge blue">1</span> Lumpectomy</h4>
-								<div class="desc">
-									<p>Most women go for lumpectomy because it helps conserve their breast.</p>
-									<ul>
-										<li>In lumpectomy, only part of the breast is removed. The surgeon will remove the cancer lump and up to 1 cm of the surrounding breast tissue</li>
-										<li>Cancer cells may move to the lymph nodes in the armpit. If so, they will be removed during the surgery.</li>
-										<li>After a surgery, a drain is used to remove any fluid or blood that collects under the wound. This drain consists of a soft plastic tube connected to a plastic bottle. It will be removed once there is no more fluid or blood.</li>
-										<li>Most women can go home within a day or two.</li>
-										<li>Occasionally, another surgery may be needed if cancer cells are too close tothe edge of the tissue removed during lumpectomy. This happens in 20 out of 100 people. </li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php
+					$treatment_options = array(
+						"lumpectomy" => array(
+							"desc" => "lumpectomy_desc",
+							"points" => 5
+						),
 
-					<div class="col-md-6 col-md-offset-3 grid-item">
-						<div class="white-card hoverable">
-							<div class="content text-left">
-								<h4><span class="num-badge blue">2</span> Masectomy</h4>
-								<div class="desc">
-									<p>The whole breast (including the nipple) is removed leaving a flat chest wall with a scar.</p>
-									<ul>
-										<li>Most women spend 2-3 nights in hospital. Like lumpectomy, a drain which consists of a soft plastic tube connected to a plastic bottle will be used to remove any fluid or blood collecting under the wound. </li>
-										<li>Some women may consider breast reconstruction surgery where a new breast shape is created. Your surgeon can discuss this further with you.</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+						"mastectomy" => array(
+							"desc" => "mastectomy_desc",
+							"points" => 2
+						),
 
-					<div class="col-md-6 col-md-offset-3 grid-item">
-						<div class="white-card hoverable">
-							<div class="content text-left">
-								<h4><span class="num-badge blue">3</span> Alternative treatment</h4>
-								<div class="desc">
-									<p>Some women prefer alternative treatment such as food supplement, herbal medicine or spiritual healing. So far, there is no good scientific evidence to support using alternative treatment to cure breast cancer.</p>
-									<p>Modern medicine is based on scientific evidence while alternative treatment is often based on individual practitioners’ experience.</p>
-									<p>You may want to ask the following questions before considering alternative treatment:</p>
-									<ul>
-										<li>‘Is the alternative practitioner qualified in treating breast cancer?’</li>
-										<li>‘Is there any scientic information based on human beings (not animals)?’</li>
-										<li>‘If there are claims that a person is cured, ask whether is it a breast cancer or a benign breast lump?’</li>
-										<li>‘What is the chance of alternative treatment curing breast cancer compared to surgery?’</li>
-									</ul>
-									<p>It is important to know that most breast cancers grow slowly and do not spread immediately. If the breast cancer does not grow or spread within a few months, it does not mean that the alternative treatment is effective.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+						"alternative" => array(
+							"desc" => 4,
+							"points" => 4
+						),
+						"no_treatment" => array(
+							"desc" => "no_treatment_desc"
+						)
+					);
+					?>
 
+					<?php
+					$treatment_i = 0;
+					foreach ( $treatment_options as $treatment_key => $treatment_data ):
+						list( $desc, $points ) = get_list( ['desc', 'points'], $treatment_data );
+					?>
 					<div class="col-md-6 col-md-offset-3 grid-item">
 						<div class="white-card hoverable">
 							<div class="content text-left">
-								<h4><span class="num-badge red">4</span> No treatment</h4>
+								<?php
+								_e( '<h4><span class="num-badge %3$s">%d</span> %s</h4>',
+									++$treatment_i, u($treatment_key), $treatment_i!=4?"blue":"red" ); ?>
 								<div class="desc">
-									<p>You decided not to take any action on the disease.</p>
+									<?php
+									if ( !empty($desc) ){
+										if ( is_integer($desc) ){
+											for ( $di=1; $di<=$desc; $di++ ){
+												_e( '<p>%s</p>', u("{$treatment_key}_desc{$di}") );
+											}
+										} else {
+											_e( '<p>%s</p>', u($desc) );
+										}
+									}
+
+									if ( !empty($points) ){
+										_e('<ul>');
+										for ( $pi=1; $pi<=$points; $pi++ ){
+											_e('<li>%s</li>', u("{$treatment_key}_p{$pi}"));
+										}
+										_e('</ul>');
+									}
+									?>
 								</div>
 							</div>
 						</div>
 					</div>
+					<?php endforeach; ?>
 
 					<div class="col-md-6 col-md-offset-3 grid-item">
 						<div class="btn-action text-right">
