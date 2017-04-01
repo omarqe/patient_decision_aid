@@ -48,6 +48,10 @@
 		return parseQueryString(s);
 	}
 
+	window.getAction = function(){
+		return window.location.pathname;
+	}
+
 	$.fn.block = function( b, d ){
 		var t = $(this);
 		PDA.block( t, b, d );

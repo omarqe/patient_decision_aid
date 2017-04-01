@@ -181,3 +181,24 @@ function __e( $string ){
 	else
 		echo html_entity_decode($str);
 }
+
+/**
+ * Determine whether the page is requested via AJAX.
+ * 
+ * @return 	bool
+ * @since 	0.1.21
+ **/
+function is_ajax_request(){
+	return isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+		&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+}
+
+/**
+ * Alias of is_ajax_request().
+ * 
+ * @uses 	is_ajax_request()
+ * @since 	0.1.30
+ **/
+function doing_ajax(){
+	return is_ajax_request();
+}
