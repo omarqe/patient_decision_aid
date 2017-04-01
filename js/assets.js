@@ -16,9 +16,16 @@
 		return o ? $(e) : e;
 	}
 
+	
+
 	window.PDA = {
 		init: function(){
 			doc
+			.on('mouseover click', function(){
+				window.masonry = $('.masonry').masonry({
+					itemSelector:'.grid-item'
+				});
+			})
 			.on('click', invoke('next_page', false), this.nextPage)
 			.on('click', invoke('prev_page', false), this.prevPage);
 		},
@@ -48,6 +55,13 @@
 			var t = t instanceof jQuery ? t : $(t), p = t.parents('section'), n = p.next('section'), fx = t.data('anim');
 			if ( typeof g !== 'undefined' && g === 'prev' )
 				n = p.prev('section');
+
+			if ( n.length < 1 ){
+				sendAlert("Sorry, there is an error occured. Please try again.", "red");
+				return false;
+			}
+
+			doc.trigger('click');
 
 			fx = fx || 'fadeIn';
 			p.removeClass('active').hide();
