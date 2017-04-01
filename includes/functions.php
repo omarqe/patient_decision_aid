@@ -115,3 +115,119 @@ function get_common_enquiries(){
 		)
 	);
 }
+
+/**
+ * Prints codes in HTML a <pre> block.
+ * 
+ * @param 	mixed 	$input 		The thing to print.
+ * @param 	bool 	$return		Set to true to return the output instead of echoing it.
+ * @return 	string
+ * @since 	0.1.38
+ **/
+function print_p( $input, $return = false ){
+	if ( '' === $input ) return '';
+
+	$input = sprintf( '<pre>%s</pre>', print_r($input, true) );
+	if ( $return )
+		return $input;
+
+	echo $input;
+}
+
+/**
+ * Returns a string with translation. Note that HTML is not available through this.
+ * 
+ * @param 	string 	$key 		Translation key.
+ * @param 	string 	$default 	Default fallback if the translation is unavailable.
+ * 
+ * @return 	string
+ * @since 	0.1
+ **/
+function u( $key, $default = '' ){
+	$args 	= array_slice(func_get_args(), 2);
+	$string = loc($key, $default);
+
+	if ( !empty($args) )
+		$string = vsprintf( $string, $args );
+
+	return htmlentities( $string );
+}
+
+/**
+ * Prints a string with translation. Note that HTML is not available through this.
+ * 
+ * @param 	string 	$key 		Translation key.
+ * @param 	string 	$default 	Default fallback if the translation is unavailable.
+ * 
+ * @return 	string
+ * @since 	0.1
+ **/
+function o( $key, $default = '' ){
+	$args 	= array_slice(func_get_args(), 2);
+	$string = loc($key, $default);
+
+	if ( !empty($args) )
+		$string = vsprintf( $string, $args );
+
+	echo htmlentities( $string );
+}
+
+function __( $string ){
+	$args = func_get_args();
+	$args = array_slice($args, 1);
+
+	if ( empty($args) )
+		return $string;
+
+	if ( isset($args[0]) && is_array($args[0]) )
+		return vsprintf($string, $args[0]);
+	else
+		return vsprintf($string, $args);
+}
+
+/**
+ * Prints an escaped string
+ * 
+ * @param 	string 	$string 	The text to be printed.
+ * @since 	0.0.1
+ **/
+function _e( $string ){
+	$args = func_get_args();
+	$args = array_slice($args, 1);
+
+	if ( empty($args) ){
+		echo $string;
+		return;
+	}
+
+	echo __( $string, $args );
+}
+
+function __esc( $string ){
+	$args = array_slice(func_get_args(), 1);
+
+	$str = $string;
+	if ( isset($args[0]) && $args[0] != false )
+		$str = vsprintf($string, $args);
+
+	return html_entity_decode($str);
+}
+
+function _esc( $string ){
+	$args = array_slice(func_get_args(), 2);
+	_e( htmlentities($string), $args );
+}
+
+function __e( $string ){
+	$args = array_slice(func_get_args(), 1);
+
+	if ( isset($args[0]) && $args[0] != false )
+		$str = sprintf($string, $args);
+	else
+		$str = $string;
+
+	if ( !$decode )
+		echo $str;
+	else
+		echo html_entity_decode($str);
+}

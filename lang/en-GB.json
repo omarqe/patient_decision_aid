@@ -1,4 +1,30 @@
 {
 	"language":"English",
 	"author":"Omar Mokhtar Al-Asad",
+	"site_title":"Patient Decision Aid",
+	"site_title_desc":"Breast Cancer",
+	"begin":"Begin",
+	"proceed":"Proceed",
+	"continue":"Continue",
+	"previous":"Previous page",
+	"context":{
+		"main":{
+			"header":"Patient Decision Aid",
+			"subtitle":"This website provides you information about the early stages (stage 1 & 2) breast cancer including symptoms and treatments. To begin with, click the begin button below."
+		},
+		"definition":{
+			"header":"What is breast cancer?",
+			"subtitle":"Cancer occurs when cells in our body turn abnormal and start to grow out of control. In breast cancer, these abnormal cells grow in the breast to become a lump. Breast cancer is usually painless and, if not treated, may spread to other parts of the body such as lymph nodes, lungs, liver, bones and brain.",
+			"see_options":"See treatment options",
+			"stage1":"Stage 1",
+			"stage2":"Stage 2",
+			"stage3":"Stage 3",
+			"stage4":"Stage 4",
+			"stage1_desc":"The breast cancer is 2cm or less in size. The lymph nodes under the arm are not affected and the cancer has not spread.",
+			"stage2_desc":"The breast cancer is between more than 2 and 5cm in size. The lymph nodes may be affected but the cancer has not spread.",
+			"stage3_desc":"The size of the breast cancer is more than 5cm or it has spread to the skin or chest wall.",
+			"stage4_desc":"The breast cancer has spread to other parts of the body such as lungs, liver, bones and brain.",
+			"severe_alert":"This website does not support stage 3 & 4 breast cancer. If you notice this symptom on your body, please consult with the doctor immediately."
+		}
+	}
 }

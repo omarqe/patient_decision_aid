@@ -13,4 +13,12 @@
 define( 'ABSPATH', dirname(__FILE__) );
 define( 'INC'	 , '/includes' );
 
+require_once( ABSPATH . INC . '/class-language.php' );
 require_once( ABSPATH . INC . '/functions.php' );
+
+/**
+ * Create language object.
+ * 
+ * @since 	0.1
+ **/
+$GLOBALS['lang'] = new PDA_Language();

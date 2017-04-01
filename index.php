@@ -29,27 +29,29 @@ require( dirname(__FILE__) . '/load.php' );
 </head>
 <body>
 	<div id="ribbon_container">
-		<div class="ribbon animated fadeInDown">
+		<!-- <div class="ribbon animated fadeInDown">
 			We use cookie to ensure the best experience for you. Please read our <a>cookie use policy</a>.
 			<a class="dismiss">&times;</a>
-		</div>
+		</div> -->
 	</div>
 
-	<section style="background-image:url(images/ian-schneider-39678.jpg); color:#eee !important">
+	<section class="active" style="background-image:url(images/ian-schneider-39678.jpg); color:#eee !important">
+		<?php init_locale('main'); ?>
 		<div class="main-overlay centralized">
 			<div class="content animated fadeIn">
-				<h1>Patient Decision Aid</h1>
-				<h5 class="subtitle">
-					This website provides you information about the early stages (stage 1 &amp; 2) breast cancer including symptoms and treatments. To begin with, click the begin button below.
-				</h5>
+				<?php
+				_e( '<h1>%s</h1>', u('header') );
+				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				?>
 				<div class="btn-action">
-					<a class="btn" data-invoke="next_page" data-anim="fadeInUp">Begin</a>
+					<a class="btn" data-invoke="next_page" data-anim="fadeInUp"><?php o('begin'); ?></a>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<section style="background:rgb(38,50,56) url(images/videos/Puzzling.jpg); color:#eee">
+		<?php init_locale('definition'); ?>
 		<video autoplay loop muted>
 			<source src="images/videos/Puzzling.mp4" type="video/mp4">
 			<source src="images/videos/Puzzling.webm" type="video/webm">
@@ -57,69 +59,43 @@ require( dirname(__FILE__) . '/load.php' );
 
 		<div class="main-overlay centralized" style="background:rgba(38,50,56,.9)">
 			<div class="content">
-				<h1>What is breast cancer?</h1>
-				<h5 class="subtitle">Cancer occurs when cells in our body turn abnormal and start to grow out of control. In breast cancer, these abnormal cells grow in the breast to become a lump. Breast cancer is usually painless and, if not treated, may spread to other parts of the body such as lymph nodes, lungs, liver, bones and brain. </h5>
+				<?php
+				_e( '<h1>%s</h1>', u('header') );
+				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
+				?>
 
 				<div class="compartment row">
+					<?php for ( $i=1; $i<=4; $i++ ): ?>
 					<div class="col-md-6">
 						<div class="white-card hoverable">
 							<div class="content">
-								<h4>Stage 1</h4>
-								<div class="desc">
-									The breast cancer is 2cm or less in size. The lymph nodes under the arm are not affected and the cancer has not spread.
-								</div>
+								<?php
+								$severe_alert = '';
+								if ( $i >= 3 ){
+									$severe_alert = __(
+										'<br class="separator small">'
+										. '<div class="notice text-only red italic small" style="margin-top:20px">%s</div>'
+										, u('severe_alert')
+									);
+								}
 
+								_e( '<h4>%s</h4>', u("stage{$i}") );
+								_e( '<div class="desc">%1$s%2$s</div>', u("stage{$i}_desc"), $severe_alert );
+								?>
+
+								<?php if ( $i < 3 ): ?>
 								<div class="btn-action">
-									<a class="btn btn-success btn-sm" data-invoke="next_page">See treatment options &rarr;</a>
+									<a class="btn btn-success btn-sm" data-invoke="next_page"><?php _e("%s &rarr;", u('see_options')); ?></a>
 								</div>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
-
-					<div class="col-md-6">
-						<div class="white-card hoverable">
-							<div class="content">
-								<h4>Stage 2</h4>
-								<div class="desc">
-									The breast cancer is between more than 2 and 5cm in size. The lymph nodes may be affected but the cancer has not spread.
-								</div>
-
-								<div class="btn-action">
-									<a class="btn btn-success btn-sm" data-invoke="next_page">See treatment options &rarr;</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="white-card hoverable">
-							<div class="content">
-								<h4>Stage 3</h4>
-								<div class="desc">
-									The size of the breast cancer is more than 5cm or it has spread to the skin or chest wall.
-									<br class="separator small">
-									<div class="notice text-only red italic small" style="margin-top:20px">If you notice this symptom on your body, please consult with the doctor immediately.</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="white-card hoverable">
-							<div class="content">
-								<h4>Stage 4</h4>
-								<div class="desc">
-									The breast cancer has spread to other parts of the body such as lungs, liver, bones and brain.
-									<br class="separator small">
-									<div class="notice text-only red italic small" style="margin-top:20px">If you notice this symptom on your body, please consult with the doctor immediately.</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php endfor; ?>
 				</div>
 
 				<div class="btn-action text-right">
-					<a class="btn btn-xs" data-invoke="prev_page">&larr; Previous page</a>
+					<a class="btn btn-xs" data-invoke="prev_page"><?php _e('&larr; %s', u('previous')); ?></a>
 				</div>
 			</div>
 		</div>
@@ -207,7 +183,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section class="active">
+	<section>
 		<div class="section-container centralized">
 			<div class="content" style="width:40%">
 				<h1>What are you worried about?</h1>
