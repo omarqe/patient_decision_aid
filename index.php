@@ -35,7 +35,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div> -->
 	</div>
 
-	<section style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
+	<section class="active" style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
 		<?php init_locale('main'); ?>
 		<div class="main-overlay centralized" style="background:rgba(255,82,82,.7)">
 			<div class="content animated fadeIn">
@@ -220,7 +220,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section class="active">
+	<section>
 		<div class="section-container centralized">
 			<div class="content" style="width:60%">
 				<?php
@@ -260,28 +260,6 @@ require( dirname(__FILE__) . '/load.php' );
 									</div>
 								</td>
 							</tr>
-							<!-- <tr>
-								<td class="enquiry">How long will I live?</td>
-								<td>Depends on your faith.</td>
-								<td>I don't know.</td>
-								<td>Ask the practitioner.</td>
-								<td>5 years.</td>
-							</tr>
-							<tr>
-								<td class="enquiry">How long will I live?</td>
-								<td>Depends on your faith.</td>
-								<td>I don't know.</td>
-								<td>Ask the practitioner.</td>
-								<td>5 years.</td>
-							</tr>
-
-							<tr>
-								<td class="enquiry">How long will I live?</td>
-								<td>Depends on your faith.</td>
-								<td>I don't know.</td>
-								<td>Ask the practitioner.</td>
-								<td>5 years.</td>
-							</tr> -->
 						</tbody>
 					</table>
 				</div>
