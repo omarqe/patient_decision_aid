@@ -35,7 +35,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</div>
 
-	<section style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
+	<section class="active" style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
 		<?php init_locale('main'); ?>
 		<div class="main-overlay centralized" style="background:rgba(255,82,82,.7)">
 			<div class="content animated fadeIn">
@@ -274,7 +274,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section class="active">
+	<section>
 		<?php init_locale('concerns', 'treatment'); ?>
 		<div class="section-container centralized">
 			<div class="content">
