@@ -157,7 +157,8 @@
 		"ajax":{
 			"select_worry":"Please select <b>at least one thing</b> that you are worrying about.",
 			"ajax_error":"Sorry, there's an error occured. Please try again.",
-			"nickname_pls":"Uh-oh, can we know your nickname to begin?"
+			"nickname_pls":"Uh-oh, can we know your nickname to begin?",
+			"required_inputs_empty":"Please answer all inputs highlighted in red."
 		}
 	}
 }

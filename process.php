@@ -83,7 +83,7 @@ switch( $action ){
 		}
 
 		if ( !empty($empties) )
-			send_response( "Please answer all inputs highlighted in red.", "red", false, compact('empties') );
+			send_response( u("required_inputs_empty"), "red", false, compact('empties') );
 
 		send_response("", "", true);
 		exit;
