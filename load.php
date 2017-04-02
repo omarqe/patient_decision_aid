@@ -10,6 +10,8 @@
  * @package		PDA
  **/
 
+session_start();
+
 define( 'PDA_READY', true );
 define( 'ABSPATH', dirname(__FILE__) );
 define( 'INC'	 , '/includes' );
