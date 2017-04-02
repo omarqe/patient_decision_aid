@@ -29,10 +29,10 @@ require( dirname(__FILE__) . '/load.php' );
 </head>
 <body>
 	<div id="ribbon_container">
-		<!-- <div class="ribbon animated fadeInDown">
+		<div class="ribbon animated fadeInDown">
 			We use cookie to ensure the best experience for you. Please read our <a>cookie use policy</a>.
 			<a class="dismiss">&times;</a>
-		</div> -->
+		</div>
 	</div>
 
 	<section class="active" style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
