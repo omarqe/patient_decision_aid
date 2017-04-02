@@ -93,7 +93,6 @@ section > video {
 	top: 0; left: 0;
 	/*width: 100%;*/
 	height: 100%;
-	max-width: 100%;
 	max-height: 100%;
 }
 
@@ -210,6 +209,7 @@ section .btn-action {
 .num-badge.green {background:#4CAF50}
 .num-badge.yellow {background:#F9A825}
 .num-badge.red {background:#F44336}
+.num-badge.pink {background:#EC407A}
 
 /**
  * Colours
@@ -218,6 +218,7 @@ section .btn-action {
  * Green  : 4CAF50;
  * Yellow : F9A825;
  * Red 	  : F44336;
+ * Pink   : EC407A;
  **/
 .notice {
 	background: #1E88E5;
@@ -283,6 +284,11 @@ section .btn-action {
 	top: 6px;
 	color: inherit;
 	cursor: pointer;
+}
+
+.ribbon pre,
+.ribbon code {
+	color: inherit;
 }
 
 .centralized,
@@ -374,6 +380,20 @@ section .btn-action {
 	background: #15971D
 }
 
+.btn.btn-pink {
+	color: #fff !important;
+	background: #EC407A;
+	border-color: transparent !important;
+}
+
+.btn.btn-pink:hover {
+	background: #EB2D6D
+}
+
+.btn.btn-pink:active {
+	background: #EA185F
+}
+
 /* Radiobutton and Checkbox */
 .checkbox, .radio {
 	display: block !important;
@@ -417,7 +437,7 @@ section .btn-action {
 	background-color: #fff;
 	border: 2px solid #C7C9C0;
 	font-size: 12px;
-	color: #FF1493;
+	color: #EC407A;
 	line-height: 14px;
 	text-align: center !important;
 
@@ -450,8 +470,8 @@ section .btn-action {
 
 .checkbox input[type=checkbox]:checked + label:before {
 	content: "\f00c";
-	background-color: #FF1493;
-	border-color: #FF1493;
+	background-color: #EC407A;
+	border-color: #EC407A;
 	color: #fff;
 }
 
@@ -472,7 +492,7 @@ section .btn-action {
 
 .radio input[type=radio]:checked + label:before {
 	/*content: "\f111";*/
-	border: 5px solid #FF1493
+	border: 5px solid #EC407A
 }
 
 code,
@@ -578,3 +598,84 @@ code {
     transform: rotate(360deg);
   }
 }
+
+table.table-pda tfoot th,
+table.table-pda thead th {
+	background: #EC407A;
+	border: 1px solid #EC407A;
+	color: #fff;
+	border-bottom: none;
+	font-size: 13px;
+	vertical-align: top;
+
+	padding: 13px 10px;
+}
+
+table.table-pda td,
+table.table-pda tbody td {
+	font-size: 80%;
+	padding: 15px 10px;
+	vertical-align: top;
+}
+
+table.table-pda tr:nth-child(even) td.enquiry {
+	background: #e0e0e0;
+	border-right: 1px solid rgba(0,0,0,.12);
+}
+
+table.table-pda tr:nth-child(odd) td.enquiry {
+	background: #ececec;
+	border-right: 1px solid rgba(0,0,0,.12);
+}
+
+table.table-pda td:first-of-type,
+table.table-pda tbody td:first-of-type {
+	border-left: 1px solid rgba(0,0,0,.12);
+}
+
+table.table-pda td:last-of-type,
+table.table-pda tbody td:last-of-type {
+	border-right: 1px solid rgba(0,0,0,.12)
+}
+
+table.table-pda tr:first-of-type td,
+table.table-pda tbody tr:first-of-type td {
+	border-top-color: #EC407A
+}
+
+table.table-pda tr:last-of-type td,
+table.table-pda tbody tr:last-of-type td {
+	border-bottom-color: #EC407A
+}
+
+/*table.table-pda thead th:last-of-type {
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-ms-border-top-right-radius: 3px;
+	-o-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+table.table-pda thead th:first-of-type {
+	-webkit-border-top-left-radius: 3px;
+	-moz-border-top-left-radius: 3px;
+	-ms-border-top-left-radius: 3px;
+	-o-border-top-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+table.table-pda tfoot th:last-of-type {
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	-ms-border-bottom-right-radius: 3px;
+	-o-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+table.table-pda tfoot th:first-of-type {
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	-ms-border-bottom-left-radius: 3px;
+	-o-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}*/

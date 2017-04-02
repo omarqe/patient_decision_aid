@@ -35,9 +35,9 @@ require( dirname(__FILE__) . '/load.php' );
 		</div> -->
 	</div>
 
-	<section style="background-image:url(images/ian-schneider-39678.jpg); color:#eee !important">
+	<section style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
 		<?php init_locale('main'); ?>
-		<div class="main-overlay centralized">
+		<div class="main-overlay centralized" style="background:rgba(255,82,82,.7)">
 			<div class="content animated fadeIn">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
@@ -50,14 +50,14 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section style="background:rgb(38,50,56) url(images/videos/Puzzling.jpg); color:#eee">
+	<section style="background:rgb(38,50,56) url(images/videos/Shoes.jpg); color:#eee">
 		<?php init_locale('definition'); ?>
 		<video autoplay loop muted>
-			<source src="images/videos/Puzzling.mp4" type="video/mp4">
-			<source src="images/videos/Puzzling.webm" type="video/webm">
+			<source src="images/videos/Shoes.mp4" type="video/mp4">
+			<source src="images/videos/Shoes.webm" type="video/webm">
 		</video>
 
-		<div class="main-overlay centralized" style="background:rgba(38,50,56,.9)">
+		<div class="main-overlay centralized" style="background:rgba(255,82,82,.9)">
 			<div class="content">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
@@ -85,7 +85,7 @@ require( dirname(__FILE__) . '/load.php' );
 
 								<?php if ( $i < 3 ): ?>
 								<div class="btn-action">
-									<a class="btn btn-success btn-sm" data-invoke="next_page"><?php _e("%s &rarr;", u('see_options')); ?></a>
+									<a class="btn btn-pink btn-sm" data-invoke="next_page"><?php _e("%s &rarr;", u('see_options')); ?></a>
 								</div>
 								<?php endif; ?>
 							</div>
@@ -100,11 +100,11 @@ require( dirname(__FILE__) . '/load.php' );
 	<section>
 		<?php init_locale('treatment'); ?>
 		<div class="section-container centralized">
-			<div class="content" style="width:60%">
+			<div class="content" style="width:80%">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
-				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; Previous page</a></div></h5>',
-					u('subtitle') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
+					u('subtitle'), u('previous') );
 				?>
 
 				<div class="compartment row masonry">
@@ -135,12 +135,12 @@ require( dirname(__FILE__) . '/load.php' );
 					foreach ( $treatment_options as $treatment_key => $treatment_data ):
 						list( $desc, $points ) = get_list( ['desc', 'points'], $treatment_data );
 					?>
-					<div class="col-md-6 col-md-offset-3 grid-item">
+					<div class="col-md-3 grid-item">
 						<div class="white-card hoverable">
 							<div class="content text-left">
 								<?php
 								_e( '<h4><span class="num-badge %3$s">%d</span> %s</h4>',
-									++$treatment_i, u($treatment_key), $treatment_i!=4?"blue":"red" ); ?>
+									++$treatment_i, u($treatment_key), $treatment_i!=4?"pink":"red" ); ?>
 								<div class="desc">
 									<?php
 									if ( !empty($desc) ){
@@ -167,9 +167,9 @@ require( dirname(__FILE__) . '/load.php' );
 					</div>
 					<?php endforeach; ?>
 
-					<div class="col-md-6 col-md-offset-3 grid-item">
+					<div class="col-md-12 grid-item">
 						<div class="btn-action text-right">
-							<a class="btn btn-green btn-sm" data-invoke="next_page">Proceed &rarr;</a>
+							<a class="btn btn-pink btn-sm" data-invoke="next_page"><?php _e('%s &rarr;', u('continue')); ?></a>
 						</div>
 					</div>
 				</div>
@@ -177,13 +177,14 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</section>
 
-	<section class="active">
-		<?php init_locale("worries"); ?>
+	<section>
+		<?php init_locale("worries", "ajax"); ?>
 		<div class="section-container centralized">
 			<div class="content" style="width:40%">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
-				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; Previous page</a></div></h5>', u('subtitle') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
+					u('subtitle'), u('previous') );
 				?>
 
 				<div class="compartment">
@@ -208,11 +209,85 @@ require( dirname(__FILE__) . '/load.php' );
 
 							<br class="separator">
 							<div class="btn-action text-right" style="margin-top: 0">
-								<button class="btn btn-green btn-sm"><?php _e('%s &rarr;', u('continue')); ?></button>
+								<input type="hidden" name="action" value="worries">
+								<button class="btn btn-pink btn-sm btn-submit"><?php _e('%s &rarr;', u('continue')); ?></button>
 							</div>
 							</form>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="active">
+		<div class="section-container centralized">
+			<div class="content" style="width:60%">
+				<?php
+				_e( '<h1>%s</h1>', u('header') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
+					u('subtitle'), u('recompare') );
+				?>
+
+				<div class="compartment">
+					<table class="table table-striped table-pda">
+						<thead>
+							<tr>
+								<th style="width:20%">&nbsp;</th>
+								<th style="width:20%">Lumpectomy</th>
+								<th style="width:20%">Mastectomy</th>
+								<th style="width:20%">Alternative treatment</th>
+								<th style="width:20%">No treatment</th>
+							</tr>
+						</thead>
+
+						<tfoot>
+							<tr>
+								<th style="width:20%">&nbsp;</th>
+								<th style="width:20%">Lumpectomy</th>
+								<th style="width:20%">Mastectomy</th>
+								<th style="width:20%">Alternative treatment</th>
+								<th style="width:20%">No treatment</th>
+							</tr>
+						</tfoot>
+
+						<tbody class="text-left" id="worry_answers">
+							<tr>
+								<td colspan="5" class="text-center" style="padding:30px 10px">
+									<p>Nothing to compare. Please go back to the previous page and try again.</p>
+									<div class="btn-action" style="margin-top:10px">
+										<?php _e('<a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %s</a>', u('previous')); ?>
+									</div>
+								</td>
+							</tr>
+							<!-- <tr>
+								<td class="enquiry">How long will I live?</td>
+								<td>Depends on your faith.</td>
+								<td>I don't know.</td>
+								<td>Ask the practitioner.</td>
+								<td>5 years.</td>
+							</tr>
+							<tr>
+								<td class="enquiry">How long will I live?</td>
+								<td>Depends on your faith.</td>
+								<td>I don't know.</td>
+								<td>Ask the practitioner.</td>
+								<td>5 years.</td>
+							</tr>
+
+							<tr>
+								<td class="enquiry">How long will I live?</td>
+								<td>Depends on your faith.</td>
+								<td>I don't know.</td>
+								<td>Ask the practitioner.</td>
+								<td>5 years.</td>
+							</tr> -->
+						</tbody>
+					</table>
+				</div>
+
+				<div class="btn-action text-right">
+					<?php _e('<a class="btn btn-pink" data-invoke="next_page">%s &rarr;</a>', u('continue')); ?>
 				</div>
 			</div>
 		</div>

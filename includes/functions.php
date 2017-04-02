@@ -100,7 +100,7 @@ function u( $key, $default = '' ){
 	if ( !empty($args) )
 		$string = vsprintf( $string, $args );
 
-	return htmlentities( $string );
+	return $string;
 }
 
 /**
@@ -119,7 +119,7 @@ function o( $key, $default = '' ){
 	if ( !empty($args) )
 		$string = vsprintf( $string, $args );
 
-	echo htmlentities( $string );
+	echo $string;
 }
 
 function __( $string ){
@@ -201,4 +201,25 @@ function is_ajax_request(){
  **/
 function doing_ajax(){
 	return is_ajax_request();
+}
+
+/**
+ * Send AJAX response.
+ * 
+ * @param 	string 		$message 	The message to print.
+ * @param 	string 		$color 		The colour of the ribbon. Default is blue.
+ * @param 	boolean 	$status 	The status. Default is false.
+ * @param 	array 		$extras 	Optional. The extra data to pass to the client.
+ * 
+ * @return 	string
+ * @since 	0.1
+ **/
+function send_response( $message, $color = 'blue', $status = false, $extras = array() ){
+	$response = compact('message', 'color', 'status');
+
+	if ( !empty($extras) && is_array($extras) )
+		$response = array_replace( $response, $extras );
+
+	echo json_encode( $response, JSON_PRETTY_PRINT );
+	exit;
 }

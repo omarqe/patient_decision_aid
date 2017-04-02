@@ -7,6 +7,7 @@
 	"proceed":"Proceed",
 	"continue":"Continue",
 	"previous":"Previous page",
+	"recompare":"Re-compare",
 	"context":{
 		"main":{
 			"header":"Patient Decision Aid",
@@ -109,6 +110,11 @@
 			"enquiry8_mastectomy":"Depends on your doctor/nurse.",
 			"enquiry8_alternative":"Depends on your practitioner.",
 			"enquiry8_no_treatment":"No cost. However, you may need treatment as the cancer grows and this will incur cost."
+		},
+
+		"ajax":{
+			"select_worry":"Please select <b>at least one thing</b> that you are worrying about.",
+			"ajax_error":"Sorry, there's an error occured. Please try again."
 		}
 	}
 }

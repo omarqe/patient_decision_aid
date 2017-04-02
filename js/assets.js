@@ -27,6 +27,14 @@
 		return PDA.alert(m,y,i);
 	}
 
+	window.respondAJAX = function(o){
+		if ( typeof o.message === 'undefined' )
+			return false;
+
+		var m = o.message, c = o.color || 'blue';
+		PDA.alert(m,c,7000); // Message hides in 5 seconds
+	}
+
 	window.invoke = function(e,o){
 		o = (typeof o === 'undefined') ? true : false;
 		e = (typeof e === 'undefined' || !e || e == '') ? '[data-invoke]' : '[data-invoke~='+e+']';
@@ -136,15 +144,37 @@
 
 		chooseWorry: function(e){
 			e.preventDefault();
-			var t = $(this), d = t.serialize();
+			var t = $(this), d = t.serialize(), b = t.find('button.btn-submit'), c = $('#worry_answers');
+
+			if ( t.isBlocked() )
+				return false;
 
 			t.block();
+			$.post(getAction(), d, function(o){
+				var s = o.status || false;
+				respondAJAX(o);
 
-			sendAlert("An error occured.", "yellow");
+				c.block();
+				if ( s && typeof o.worry_answers !== 'undefined' ){
+					PDA.goToPage(b,'next');
 
-			setTimeout(function(){
-				t.unblock();
-			}, 3000);
+					c.html(''); // Clear the previous state.
+
+					$.each(o.worry_answers, function(i,w){
+						c.append(
+							$('<tr/>')
+							.append($('<td/>').text(w.worry))
+							.append($('<td/>').text(w.lumpectomy))
+							.append($('<td/>').text(w.mastectomy))
+							.append($('<td/>').text(w.alternative))
+							.append($('<td/>').text(w.none))
+						);
+					});
+				}
+				c.unblock();
+			}, 'JSON', true)
+			.fail(function(e){ sendAlert(e.responseText,'red'); });
+			t.unblock();
 		},
 
 		alert: function(m,y,i){
@@ -153,7 +183,7 @@
 
 			m = m || 'Undefined';
 			var b = $('body'), c = $('#ribbon_container'),
-				a = $('<div/>',{class:'ribbon animated fadeInDown'}).text(m)
+				a = $('<div/>',{class:'ribbon animated fadeInDown'}).html(m)
 					.append($('<a/>',{class:'dismiss'}).html('&times;'));
 
 			if ( typeof y !== 'undefined' )
@@ -163,7 +193,17 @@
 			if ( c.find('.ribbon').length > 0 )
 				c.find('.ribbon').remove();
 
-			c.append(a);
+			c.stop().append(a);
+
+			// More than 1sec
+			if ( typeof i !== 'undefined' && i > 1000 ){
+				setTimeout(function(){
+					c.find('.ribbon').addClass('animated fadeOutUp');
+					if ( c.find('.ribbon').css('opacity') == 0 )
+						c.find('.ribbon').remove();
+				}, i);
+			}
+
 			return true;
 		},
 

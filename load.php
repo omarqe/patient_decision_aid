@@ -10,6 +10,7 @@
  * @package		PDA
  **/
 
+define( 'PDA_READY', true );
 define( 'ABSPATH', dirname(__FILE__) );
 define( 'INC'	 , '/includes' );
 
@@ -22,3 +23,8 @@ require_once( ABSPATH . INC . '/functions.php' );
  * @since 	0.1
  **/
 $GLOBALS['lang'] = new PDA_Language();
+
+if ( doing_ajax() ){
+	require_once( ABSPATH . '/process.php' );
+	exit;
+}

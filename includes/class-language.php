@@ -30,9 +30,9 @@ function get_current_lang(){
  * @return 	boolean
  * @since 	0.1
  **/
-function init_locale( $context ){
+function init_locale(){
 	global $lang;
-	return $lang->init_locale( $context );
+	return $lang->init_locale(func_get_args());
 }
 
 /**
@@ -155,17 +155,28 @@ class PDA_Language {
 	 * @return 	boolean
 	 * @since 	0.1
 	 **/
-	public function init_locale( $context ){
+	public function init_locale(){
 		$lang_data  = $this->get_parsed_lang();
 		$contexts	= parse_arg( 'context', $lang_data );
+		$context 	= func_get_args();
 
-		if ( !is_array($contexts) || empty($contexts) )
+		if ( empty($context) )
+			die( "Please provide some context." );
+		elseif ( !is_array($contexts) || empty($contexts) )
 			die( "Context is not an array." );
 
-		if ( !array_key_exists($context, $contexts) )
-			die( "The context is not found." );
+		if ( isset($context[0]) && is_array($context[0]) )
+			$context = $context[0];
 
-		$this->language_context = parse_arg( $context, $contexts );
+		$new_language_contexts = array();
+		foreach ( $context as $context_key ){
+			if ( !array_key_exists($context_key, $contexts) )
+				die( "The context is not found." );
+
+			$new_language_contexts += parse_arg( $context_key, $contexts );
+		}
+
+		$this->language_context = $new_language_contexts;
 		return true;
 	}
 
