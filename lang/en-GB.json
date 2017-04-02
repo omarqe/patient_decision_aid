@@ -11,7 +11,7 @@
 	"context":{
 		"main":{
 			"header":"Patient Decision Aid",
-			"subtitle":"This website provides you information about the early stages (stage 1 & 2) breast cancer including symptoms and treatments. To begin with, click the begin button below."
+			"subtitle":"This website provides you information about the early stages (stage 1 & 2) breast cancer including symptoms and treatments. To begin, please enter your nickname and click the begin button below."
 		},
 		"definition":{
 			"header":"What is breast cancer?",
@@ -77,7 +77,7 @@
 
 			"enquiry3":"Will I need another operation?",
 			"enquiry3_lumpectomy":"Maybe, if there are cancer cells remaining. This happens in 20 out of 100 women.",
-			"enquiry3_mastectomy":"No, unless you choose breast reconstruction.",
+			"enquiry3_mastectomy":"No, unless you consider the breast reconstruction.",
 			"enquiry3_alternative":"No.",
 			"enquiry3_no_treatment":"No.",
 
@@ -112,9 +112,16 @@
 			"enquiry8_no_treatment":"No cost. However, you may need treatment as the cancer grows and this will incur cost."
 		},
 
+		"download":{
+			"header":"Is there anything else, %s?",
+			"subtitle":"We concern about your thoughts, so we want to know what else you might still worry about. You can download the report below and show it to your doctor later.",
+			"agree_data_keep":"I agree to let the doctors keep this report for research purpose."
+		},
+
 		"ajax":{
 			"select_worry":"Please select <b>at least one thing</b> that you are worrying about.",
-			"ajax_error":"Sorry, there's an error occured. Please try again."
+			"ajax_error":"Sorry, there's an error occured. Please try again.",
+			"nickname_pls":"Uh-oh, can we know your nickname to begin?"
 		}
 	}
 }

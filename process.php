@@ -45,6 +45,24 @@ switch( $action ){
 		send_response( "", "", true, compact('worry_answers') );
 		exit;
 
+	case "begin":
+		$nickname = parse_arg( 'nickname', $_POST );
+		$shake = 'input[name=nickname]';
+
+		if ( empty($nickname) )
+			send_response( u('nickname_pls'), 'yellow', false, compact('shake') );
+
+		$nick_split = explode(' ', $nickname);
+		if ( count($nick_split) > 1 ){
+			$nickname = parse_arg( 0, $nickname );
+
+			if ( strlen($nickname) > 15 )
+				$nickname = substr( $nickname, 0, 15 );
+		}
+
+		send_response( "", "", true, compact('shake') );
+		exit;
+
 	// Process failed..
 	default:
 		send_response( u("ajax_error"), "red" );

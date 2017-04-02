@@ -43,21 +43,24 @@ require( dirname(__FILE__) . '/load.php' );
 				_e( '<h1>%s</h1>', u('header') );
 				_e( '<h5 class="subtitle">%s</h5>', u('subtitle') );
 				?>
+				<form method="post" autocomplete="off" data-invoke="begin">
 				<div class="btn-action">
-					<a class="btn" data-invoke="next_page" data-anim="fadeInUp"><?php o('begin'); ?></a>
+					<input type="text" class="form-control trans text-center" style="margin:0 auto 10px; width:180px; text-transform:capitalize" placeholder="Nickname" name="nickname" maxlength="15">
+					<button class="btn btn-submit"><?php o('begin'); ?></button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</section>
 
-	<section style="background:rgb(38,50,56) url(images/videos/Shoes.jpg); color:#eee">
+	<section style="background:rgb(38,50,56) url(images/videos/Shoes.jpg); color:#fff">
 		<?php init_locale('definition'); ?>
 		<video autoplay loop muted>
 			<source src="images/videos/Shoes.mp4" type="video/mp4">
 			<source src="images/videos/Shoes.webm" type="video/webm">
 		</video>
 
-		<div class="main-overlay centralized" style="background:rgba(255,82,82,.9)">
+		<div class="main-overlay centralized" style="background:rgba(255,124,129,.8)">
 			<div class="content">
 				<?php
 				_e( '<h1>%s</h1>', u('header') );
@@ -266,6 +269,33 @@ require( dirname(__FILE__) . '/load.php' );
 
 				<div class="btn-action text-right">
 					<?php _e('<a class="btn btn-pink" data-invoke="next_page">%s &rarr;</a>', u('continue')); ?>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<?php init_locale("download"); ?>
+		<div class="section-container centralized">
+			<div class="content" style="width:40%">
+				<?php
+				_e( '<h1>%s</h1>', u('header', '', '<span data-bind="nickname" style="text-transform:capitalize">Jane</span>') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
+					u('subtitle'), u('previous') );
+				?>
+
+				<div class="compartment">
+					<textarea class="form-control" placeholder=""></textarea>
+
+					<div class="btn-action">
+						<div class="small" style="margin-bottom:5px">
+							<div class="checkbox">
+								<input type="checkbox" name="accept_data_keep" id="accept_data_keep" checked>
+								<label for="accept_data_keep"><?php o('agree_data_keep'); ?></label>
+							</div>
+						</div>
+						<a class="btn btn-pink"><i class="fa fa-download"></i> Download</a>
+					</div>
 				</div>
 			</div>
 		</div>

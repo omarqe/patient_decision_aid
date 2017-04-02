@@ -74,6 +74,14 @@
 		return PDA.isblocked($(this));
 	}
 
+	$.fn.shakeIt = function(){
+		var t = $(t);
+		if ( t.hasClass('animated shake') )
+			t.removeClass('animated shake');
+
+		t.addClass('animated shake');
+	}
+
 	window.PDA = {
 		blocked:[],
 		init: function(){
@@ -85,7 +93,8 @@
 			})
 			.on('click', invoke('next_page', false), this.nextPage)
 			.on('click', invoke('prev_page', false), this.prevPage)
-			.on('submit', invoke('choose_worry', false), this.chooseWorry);
+			.on('submit', invoke('choose_worry', false), this.chooseWorry)
+			.on('submit', invoke('begin', false), this.begin);
 		},
 
 		getUnique: function(b){
@@ -163,7 +172,7 @@
 					$.each(o.worry_answers, function(i,w){
 						c.append(
 							$('<tr/>')
-							.append($('<td/>').text(w.worry))
+							.append($('<td/>',{class:'enquiry'}).text(w.worry))
 							.append($('<td/>').text(w.lumpectomy))
 							.append($('<td/>').text(w.mastectomy))
 							.append($('<td/>').text(w.alternative))
@@ -175,6 +184,57 @@
 			}, 'JSON', true)
 			.fail(function(e){ sendAlert(e.responseText,'red'); });
 			t.unblock();
+		},
+
+		bindValue: function(b,v,c){ // bind_id, value, container
+			var k = '[data-bind='+b+']', s;
+
+			if ( typeof c !== 'undefined' ){
+				c = c instanceof jQuery ? c : $(c);
+				s = c.find(k);
+			} else {
+				s = $(k);
+			}
+
+			s.each(function(){
+				var t = $(this), o = t.text();
+				if ( typeof v === 'string' && v.length > 0 || typeof v !== 'string' )
+					!t.is('input,select,textarea') ? t.html(v) : t.val(v);
+			});
+		},
+
+		bindTo: function(b,v,c){
+			this.bindValue(b,v,c);
+		},
+
+		begin: function(e){
+			e.preventDefault();
+
+			var t = $(this), d = parseQuery(t.serialize()), b = t.find('button.btn-submit');
+
+			d.action = 'begin';
+			console.log(d);
+			$.post(getAction(), d, function(o){
+				var s = o.status || false;
+				respondAJAX(o);
+
+				if ( typeof o.shake !== 'undefined' ){
+					var x = $(o.shake);
+					if ( x.hasClass('animated shake') )
+						x.removeClass('animated shake');
+
+					// Allow 100 milliseconds for the script to totally remove the shake class.
+					setTimeout(function(){
+						x.addClass('animated shake');
+					}, 100);
+				}
+
+				if ( s ){
+					PDA.goToPage(b, 'next');
+					t.find('.animated').removeClass('animated shake');
+					PDA.bindTo('nickname', d.nickname);
+				}
+			}, 'JSON', true);
 		},
 
 		alert: function(m,y,i){

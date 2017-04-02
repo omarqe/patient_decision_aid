@@ -89,7 +89,7 @@ section {
 }
 
 section > video {
-	position: fixed;
+	position: absolute;
 	top: 0; left: 0;
 	/*width: 100%;*/
 	height: 100%;
@@ -316,7 +316,13 @@ section .btn-action {
 }
 
 .btn:focus {
+	background: transparent;
+	color: #fff;
 	outline: none !important;
+}
+
+.btn:hover {
+	color: #333
 }
 
 .btn.btn-dark {
@@ -363,6 +369,8 @@ section .btn-action {
 	box-shadow: none;
 }
 
+.btn.btn-success:focus,
+.btn.btn-green:focus,
 .btn.btn-success,
 .btn.btn-green {
 	color: #fff !important;
@@ -380,6 +388,7 @@ section .btn-action {
 	background: #15971D
 }
 
+.btn.btn-pink:focus,
 .btn.btn-pink {
 	color: #fff !important;
 	background: #EC407A;
@@ -625,7 +634,7 @@ table.table-pda tr:nth-child(even) td.enquiry {
 
 table.table-pda tr:nth-child(odd) td.enquiry {
 	background: #ececec;
-	border-right: 1px solid rgba(0,0,0,.12);
+	border-right: 1px solid rgba(0,0,0,.08);
 }
 
 table.table-pda td:first-of-type,
@@ -646,6 +655,60 @@ table.table-pda tbody tr:first-of-type td {
 table.table-pda tr:last-of-type td,
 table.table-pda tbody tr:last-of-type td {
 	border-bottom-color: #EC407A
+}
+
+.form-control {
+	background: #fff;
+	border: none !important;
+	resize: none;
+	outline: none !important;
+
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+
+	color: #666
+}
+
+.form-control:hover,
+.form-control:focus,
+textarea:hover,
+textarea:focus,
+input:hover,
+input:focus {
+	outline: none !important;
+}
+
+.form-control.trans {
+	background: transparent !important;
+	color: #fff !important;
+	border-bottom: 2px solid #fff !important
+}
+
+.form-control.trans::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #eee;
+}
+.form-control.trans::-moz-placeholder { /* Firefox 19+ */
+  color: #eee;
+}
+.form-control.trans:-ms-input-placeholder { /* IE 10+ */
+  color: #eee;
+}
+.form-control.trans:-moz-placeholder { /* Firefox 18- */
+  color: #eee;
+}
+
+textarea.form-control {
+	padding: 10px;
+	min-height: 200px;
 }
 
 /*table.table-pda thead th:last-of-type {
