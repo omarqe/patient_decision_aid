@@ -63,6 +63,31 @@ switch( $action ){
 		send_response( "", "", true, compact('shake') );
 		exit;
 
+	case "concern":
+		$inputarr = ['surgery_prefer_pos', 'surgery_prefer_neg', 'concerns', 'extras'];
+		$required = array(
+			'support_option1',
+			'support_option2',
+			'support_option3',
+			'support_option4',
+			'support_option5',
+			'ready_for_decision',
+			'ready_for_treatment'
+		);
+
+		$postdata = parse_args( array_merge($inputarr, $required), $_POST );
+		$empties = array();
+		foreach ( $postdata as $key => $value ){
+			if ( in_array($key, $required) && empty($value) && !in_array($key, $empties) )
+				$empties[] = $key;
+		}
+
+		if ( !empty($empties) )
+			send_response( "Please answer all inputs highlighted in red.", "red", false, compact('empties') );
+
+		send_response("", "", true);
+		exit;
+
 	// Process failed..
 	default:
 		send_response( u("ajax_error"), "red" );

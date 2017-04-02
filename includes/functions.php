@@ -223,3 +223,33 @@ function send_response( $message, $color = 'blue', $status = false, $extras = ar
 	echo json_encode( $response, JSON_PRETTY_PRINT );
 	exit;
 }
+
+/**
+ * Generate 8-characters element ID based on the given element name.
+ * 
+ * @param 	string 		$name 	The element name,
+ * @return 	string
+ * @since 	0.1
+ **/
+function gen_id( $name ){
+	if ( empty($name) )
+		return '';
+
+	return substr( hash('sha1', $name), 0, 8 );
+}
+
+/**
+ * Get the surgery preferables.
+ * 
+ * @return 	array
+ * @since 	0.1
+ **/
+function get_surgery_preferables(){
+	$preferables = array(
+		['p_surgery_option1', 'n_surgery_option1'],
+		['p_surgery_option2', 'n_surgery_option2'],
+		['p_surgery_option3', 'n_surgery_option3']
+	);
+
+	return $preferables;
+}

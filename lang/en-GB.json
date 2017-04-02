@@ -8,6 +8,8 @@
 	"continue":"Continue",
 	"previous":"Previous page",
 	"recompare":"Re-compare",
+	"yes":"Yes",
+	"no":"No",
 	"context":{
 		"main":{
 			"header":"Patient Decision Aid",
@@ -112,9 +114,43 @@
 			"enquiry8_no_treatment":"No cost. However, you may need treatment as the cancer grows and this will incur cost."
 		},
 
+		"concerns":{
+			"header":"Knowing what's important to you",
+			"subtitle":"%s, you may be receiving advice on breast cancer treatment from different people and sources. It is important that you spend time thinking about what is important to you before making a decision.",
+
+			"p_surgery_option1":"it offers the best chance of cure",
+			"p_surgery_option2":"I don't want breast cancer to come back",
+			"p_surgery_option3":"it has the most scientific evidence",
+			"n_surgery_option1":"I don't want to lose my breast",
+			"n_surgery_option2":"I don't want to have the side effect of surgery",
+			"n_surgery_option3":"I prefer treatment that is natural (e.g. herbs)",
+
+			"concern_option1":"about going for chemotherapy after surgery",
+			"concern_option2":"about going for radiotherapy after surgery",
+			"concern_option3":"that the treatment is expensive",
+			"concern_option4":"that my husband or partner may not agree with my choice of treatment",
+			"concern_option5":"that my family may not agree with my choice of treatment",
+			"concern_option6":"whether I can recover quickly to return to my daily routine",
+			"concern_option7":"who is going to take care of my family when I am on treatment",
+			"concern_option8":"whether I am strong enough spiritually to undergo the treatment",
+
+			"support_option1":"Do you know enough about each breast cancer treatment option to make a choice?",
+			"support_option2":"Are you clear about what is most imporatant to you to make a choice?",
+			"support_option3":"Do you have enough support and advice from your doctor or nurse to make a choice?",
+			"support_option4":"Do you have enough support from your family to make a choice?",
+			"support_option5":"Do you need more time to think about the decision?",
+
+			"ready_prompt":"Are you ready to make decision?",
+			"ready_decision_prompt":"Are you ready to make a decision about your breast cancer treatment?",
+			"ready_treatment_prompt":"If you are ready to make a decision, which treatment do you prefer?",
+
+			"extras_prompt":"Is there anything else, %s?",
+			"extras_sub":"Use the space below to write down your concerns and questions for your doctor/nurse."
+		},
+
 		"download":{
-			"header":"Is there anything else, %s?",
-			"subtitle":"We concern about your thoughts, so we want to know what else you might still worry about. You can download the report below and show it to your doctor later.",
+			"header":"%s, your report is ready",
+			"subtitle":"You can download your report below for printing and hand it to your doctors. We would like to keep your report for research purpose. Untick the checkbox below if you do not want us to do so. Thank you very much.",
 			"agree_data_keep":"I agree to let the doctors keep this report for research purpose."
 		},
 

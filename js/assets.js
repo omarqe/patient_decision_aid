@@ -94,6 +94,7 @@
 			.on('click', invoke('next_page', false), this.nextPage)
 			.on('click', invoke('prev_page', false), this.prevPage)
 			.on('submit', invoke('choose_worry', false), this.chooseWorry)
+			.on('submit', invoke('concern', false), this.concern)
 			.on('submit', invoke('begin', false), this.begin);
 		},
 
@@ -153,7 +154,7 @@
 
 		chooseWorry: function(e){
 			e.preventDefault();
-			var t = $(this), d = t.serialize(), b = t.find('button.btn-submit'), c = $('#worry_answers');
+			var t = $(this), d = t.serialize(), c = $('#worry_answers');
 
 			if ( t.isBlocked() )
 				return false;
@@ -165,7 +166,7 @@
 
 				c.block();
 				if ( s && typeof o.worry_answers !== 'undefined' ){
-					PDA.goToPage(b,'next');
+					PDA.goToPage(t,'next');
 
 					c.html(''); // Clear the previous state.
 
@@ -184,6 +185,33 @@
 			}, 'JSON', true)
 			.fail(function(e){ sendAlert(e.responseText,'red'); });
 			t.unblock();
+		},
+
+		concern: function(e){
+			e.preventDefault();
+			var t = $(this), d = parseQuery(t.serialize());
+
+			d.action = 'concern';
+			$.post(getAction(), d, function(o){
+				var s = o.status || false;
+				respondAJAX(o);
+
+				if ( typeof o.empties !== 'undefined' ){
+					$.each(o.empties, function(i,x){
+						// var l = x.data('required');
+						var x = $('input[name='+x+']'), l = x.data('required');
+							l = $('[data-label_required='+l+']');
+
+						l.addClass('red');
+						x.on('change', function(){
+							if ( x.val() !== '' ) l.removeClass('red');
+						});
+					});
+				}
+
+				if ( s ) PDA.goToPage(t, 'next');
+			}, 'JSON', true)
+			.fail(function(e){sendAlert(e.responseText, 'red')});
 		},
 
 		bindValue: function(b,v,c){ // bind_id, value, container
@@ -210,7 +238,7 @@
 		begin: function(e){
 			e.preventDefault();
 
-			var t = $(this), d = parseQuery(t.serialize()), b = t.find('button.btn-submit');
+			var t = $(this), d = parseQuery(t.serialize());
 
 			d.action = 'begin';
 			console.log(d);
@@ -230,7 +258,7 @@
 				}
 
 				if ( s ){
-					PDA.goToPage(b, 'next');
+					PDA.goToPage(t, 'next');
 					t.find('.animated').removeClass('animated shake');
 					PDA.bindTo('nickname', d.nickname);
 				}
