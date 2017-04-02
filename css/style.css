@@ -48,9 +48,21 @@ a:hover {
 	font-weight: 700
 }
 
+.nickname {
+	text-transform: capitalize;
+}
+
 small,
 .small {
 	font-size: 80%
+}
+
+.no-margin {
+	margin: 0 !important
+}
+
+.no-padding {
+	padding: 0 !important
 }
 
 br.separator {
@@ -89,7 +101,7 @@ section {
 }
 
 section > video {
-	position: absolute;
+	position: fixed;
 	top: 0; left: 0;
 	/*width: 100%;*/
 	height: 100%;
@@ -129,6 +141,10 @@ section h5.subtitle {
 section .content .compartment,
 section .btn-action {
 	margin-top: 35px;
+}
+
+section h4 {
+	margin-top: 55px;
 }
 
 .white-card {
@@ -654,7 +670,15 @@ table.table-pda tbody tr:first-of-type td {
 
 table.table-pda tr:last-of-type td,
 table.table-pda tbody tr:last-of-type td {
-	border-bottom-color: #EC407A
+	/*border-bottom-color: #EC407A*/
+	border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+table.last-col-pull-right td:last-of-type,
+table.last-col-pull-right th:last-of-type,
+table.last-col-pull-right tbody td:last-of-type,
+table.last-col-pull-right thead th:last-of-type {
+	text-align: right !important;
 }
 
 .form-control {

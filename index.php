@@ -35,7 +35,7 @@ require( dirname(__FILE__) . '/load.php' );
 		</div>
 	</div>
 
-	<section class="active" style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
+	<section style="background-image:url(images/alice-moore-192526.jpg); color:#fff !important">
 		<?php init_locale('main'); ?>
 		<div class="main-overlay centralized" style="background:rgba(255,82,82,.7)">
 			<div class="content animated fadeIn">
@@ -181,7 +181,7 @@ require( dirname(__FILE__) . '/load.php' );
 	</section>
 
 	<section>
-		<?php init_locale("worries", "ajax"); ?>
+		<?php init_locale("worries", "treatment"); ?>
 		<div class="section-container centralized">
 			<div class="content" style="width:40%">
 				<?php
@@ -268,8 +268,162 @@ require( dirname(__FILE__) . '/load.php' );
 				</div>
 
 				<div class="btn-action text-right">
-					<?php _e('<a class="btn btn-pink" data-invoke="next_page">%s &rarr;</a>', u('continue')); ?>
+					<?php _e('<a class="btn btn-pink btn-sm" data-invoke="next_page">%s &rarr;</a>', u('continue')); ?>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="active">
+		<?php init_locale('concerns', 'treatment'); ?>
+		<div class="section-container centralized">
+			<div class="content">
+				<?php
+				_e( '<h1>%s</h1>', u('header', '', '<span data-bind="nickname" style="text-transform:capitalize">Jane</span>') );
+				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
+					u('subtitle', '', '<span class="nickname" data-bind="nickname">Jane</span>'), u('previous') );
+				?>
+
+				<form method="post" data-invoke="concern">
+				<div class="compartment">
+					<table class="table table-pda">
+						<thead>
+							<tr>
+								<th style="width:50%">I prefer surgery because</th>
+								<th style="width:50%">I don't prefer surgery because</th>
+							</tr>
+						</thead>
+						<tbody class="text-left">
+							<?php
+							foreach ( get_surgery_preferables() as $prefer_i => $prefer_values ):
+								list($prefer_positive, $prefer_negative) = get_list([0,1], $prefer_values);
+							?>
+							<tr>
+								<td>
+									<div class="checkbox no-padding">
+										<?php
+										_e(
+											'<input type="checkbox" name="surgery_prefer_pos[]" value="%1$s" id="%2$s">' .
+											'<label for="%2$s">%3$s</label>',
+
+											$prefer_positive,
+											gen_id($prefer_positive),
+											u($prefer_positive)
+										);
+										?>
+									</div>
+								</td>
+								<td>
+									<div class="checkbox no-padding">
+										<?php
+											_e(
+												'<input type="checkbox" name="surgery_prefer_neg[]" value="%1$s" id="%2$s">' .
+												'<label for="%2$s">%3$s</label>',
+
+												$prefer_negative,
+												gen_id($prefer_negative),
+												u($prefer_negative)
+											);
+										?>
+									</div>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="compartment text-left">
+					<h4>I am concern ...</h4>
+					<?php
+					for ( $concern_i=1; $concern_i<=8; $concern_i++ ){
+						$concern_input_name = "concern_option{$concern_i}";
+
+						_e( '<div class="checkbox">' );
+						_e( 
+							'<input type="checkbox" name="concerns[]" value="%1$s" id="%2$s">'.
+							'<label for="%2$s">%3$s</label>',
+							$concern_input_name,
+							gen_id($concern_input_name),
+							u($concern_input_name)
+						);
+						_e( '</div>' );
+					}
+					?>
+				</div>
+
+				<div class="compartment text-left">
+					<h4>Do you need more support?</h4>
+					<table class="table table-striped">
+						<tbody>
+							<?php
+							for ( $support_i=1; $support_i<=5; $support_i++ ):
+								$support_input_name = "support_option{$support_i}";
+								$support_input_id = gen_id($support_input_name);
+							?>
+							<tr>
+								<td style="width:80%" data-label_required="<?php _e($support_input_name) ?>"><?php o($support_input_name) ?></td>
+								<td style="width:10%">
+									<div class="radio no-padding">
+										<?php
+										_e( '<input type="radio" name="%1$s" id="%2$s" value="yes" data-required="%1$s">', $support_input_name, $support_input_id );
+										_e( '<label for="%1$s">%2$s</label>', $support_input_id, u('yes') );
+										?>
+									</div>
+								</td>
+								<td style="width:10%">
+									<div class="radio no-padding">
+										<?php
+										_e( '<input type="radio" name="%1$s" id="n_%2$s" value="yes" data-required="%1$s">', $support_input_name, $support_input_id );
+										_e( '<label for="n_%1$s">%2$s</label>', $support_input_id, u('no') );
+										?>
+									</div>
+								</td>
+							</tr>
+							<?php endfor; ?>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="compartment text-left">
+					<h4><?php o('ready_prompt'); ?></h4>
+					<div class="form-group">
+						<label data-label_required="ready_for_decision"><?php o("ready_decision_prompt"); ?></label>
+						<div class="radio" style="padding-bottom:5px">
+							<input type="radio" name="ready_for_decision" id="ready_for_decision_yes" data-required="ready_for_decision" value="yes">
+							<?php _e( '<label for="ready_for_decision_yes">%s</label>', u('yes') ); ?>
+						</div>
+						<div class="radio">
+							<input type="radio" name="ready_for_decision" id="ready_for_decision_no" data-required="ready_for_decision" value="no">
+							<?php _e( '<label for="ready_for_decision_no">%s</label>', u('no') ); ?>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label data-label_required="ready_for_treatment"><?php o('ready_treatment_prompt'); ?></label>
+						<?php
+						foreach ( ['lumpectomy', 'mastectomy', 'alternative', 'no_treatment'] as $ready_locale_key ){
+							$ready_treatment_id = gen_id("ready_treatment_$ready_locale_key");
+
+							_e( '<div class="radio" style="padding-bottom:5px">' );
+							_e( '<input type="radio" name="ready_for_treatment" data-required="ready_for_treatment" id="%2$s" value="%1$s">', $ready_locale_key, $ready_treatment_id );
+							_e( '<label for="%2$s">%1$s</label>', u($ready_locale_key), $ready_treatment_id );
+							_e( '</div>' );
+						}
+						?>
+					</div>
+				</div>
+
+				<div class="compartment text-left">
+					<h4 style="margin-bottom:5px"><?php o('extras_prompt', '', '<span class="nickname" data-bind="nickname">Jane</span>'); ?></h4>
+					<h5 class="subtitle light"><label for="extras"><?php o('extras_sub'); ?></label></h5>
+					<textarea class="form-control" placeholder="" id="extras" name="extras"></textarea>
+				</div>
+
+				<div class="btn-action text-right">
+					<button class="btn btn-pink btn-sm">Continue &rarr;</button>
+				</div>
+				</form>
 			</div>
 		</div>
 	</section>
@@ -279,23 +433,20 @@ require( dirname(__FILE__) . '/load.php' );
 		<div class="section-container centralized">
 			<div class="content" style="width:40%">
 				<?php
-				_e( '<h1>%s</h1>', u('header', '', '<span data-bind="nickname" style="text-transform:capitalize">Jane</span>') );
+				_e( '<h1>%s</h1>', u('header', '', '<span data-bind="nickname" class="nickname">Jane</span>') );
 				_e( '<h5 class="subtitle">%s<div class="btn-action" style="margin-top:10px"><a class="btn btn-dark btn-xs" data-invoke="prev_page">&larr; %2$s</a></div></h5>',
 					u('subtitle'), u('previous') );
 				?>
 
-				<div class="compartment">
-					<textarea class="form-control" placeholder=""></textarea>
-
-					<div class="btn-action">
-						<div class="small" style="margin-bottom:5px">
-							<div class="checkbox">
-								<input type="checkbox" name="accept_data_keep" id="accept_data_keep" checked>
-								<label for="accept_data_keep"><?php o('agree_data_keep'); ?></label>
-							</div>
+				<div class="btn-action">
+					<br class="separator small" style="margin-bottom:30px">
+					<div class="small" style="margin-bottom:5px">
+						<div class="checkbox">
+							<input type="checkbox" name="accept_data_keep" id="accept_data_keep" checked>
+							<label for="accept_data_keep"><?php o('agree_data_keep'); ?></label>
 						</div>
-						<a class="btn btn-pink"><i class="fa fa-download"></i> Download</a>
 					</div>
+					<a class="btn btn-pink"><i class="fa fa-download"></i> Download</a>
 				</div>
 			</div>
 		</div>
