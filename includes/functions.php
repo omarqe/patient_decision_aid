@@ -253,3 +253,83 @@ function get_surgery_preferables(){
 
 	return $preferables;
 }
+
+/**
+ * Get JSON parse error message.
+ * 
+ * @param 	boolean 	$return 	Return the error message or echo it.
+ * @return 	string
+ * @since 	0.1
+ **/
+function get_json_error( $return = true ){
+	$error = 'No errors.';
+
+	switch (json_last_error()) {
+        case JSON_ERROR_NONE:
+            $error = 'No errors';
+        break;
+        case JSON_ERROR_DEPTH:
+            $error = 'Maximum stack depth exceeded';
+        break;
+        case JSON_ERROR_STATE_MISMATCH:
+            $error = 'Underflow or the modes mismatch';
+        break;
+        case JSON_ERROR_CTRL_CHAR:
+            $error = 'Unexpected control character found';
+        break;
+        case JSON_ERROR_SYNTAX:
+            $error = 'Syntax error, malformed JSON';
+        break;
+        case JSON_ERROR_UTF8:
+            $error = 'Malformed UTF-8 characters, possibly incorrectly encoded';
+        break;
+        default:
+            $error = 'Unknown error';
+        break;
+    }
+
+    if ( $return )
+    	return $error;
+
+    echo $error;
+}
+
+/**
+ * Get the file extension.
+ * 
+ * @param 	string 	$file 	The file name or file path.
+ * @return 	string
+ * @since 	0.1.39
+ **/
+function get_file_extension( $file ){
+	if ( empty($file) )
+		return '';
+
+	$filepath = explode( '/', $file );
+	$filename = parse_arg( count($filepath)-1, $filepath );
+
+	$the_file = explode( '.', $filename );
+	$extension = parse_arg( count($the_file)-1, $the_file );
+
+	return strtolower($extension);
+}
+
+/**
+ * Change all keys case recursively in multidimensional array.
+ * 
+ * @param 	array 	$arr 	The array input.
+ * @param 	long 	$case 	The key case, constant CASE_LOWER or CASE_UPPER.
+ * 
+ * @author 	Mike Starov
+ * @link 	http://stackoverflow.com/a/23299766/5204983
+ * @return 	array
+ * @since 	0.1
+ **/
+function array_change_key_case_recursive( $arr, $case = CASE_LOWER) {
+	return array_map(function($item) use ($case){
+		if ( is_array($item) )
+			$item = array_change_key_case_recursive( $item, $case );
+
+		return $item;
+	}, array_change_key_case($arr, $case));
+}

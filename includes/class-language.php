@@ -56,11 +56,11 @@ class PDA_Language {
 	 * @since 	0.1
 	 **/
 	private $langs = array(
-		"en" => "en-GB.json",	// English (British)
-		"ms" => "ms.json",		// Malay
-		"zh" => "zh.json",		// Chinese
-		"bn" => "bn.json",		// Bangladesh
-		// "ta" => "ta.json"	// Tamil
+		"en" => "en-GB.ini",	// English (British)
+		"ms" => "ms.ini",		// Malay
+		"zh" => "zh.ini",		// Chinese
+		"bn" => "bn.ini",		// Bangladesh
+		"ta" => "ta.ini"	// Tamil
 	);
 
 	/**
@@ -119,8 +119,14 @@ class PDA_Language {
 		if ( !file_exists($language_file) )
 			die( "Language file (<code>$file</code>) is not exists in <code>$path</code>." );
 
-		$get 	 = file_get_contents( $language_file );
-		$decoded = json_decode( $get, true );
+		$decoded = NULL;
+		if ( strtolower(get_file_extension($language_file)) == 'json' ){
+			$get 	 = file_get_contents( $language_file );
+			$decoded = json_decode( $get, true );
+		} else {
+			$decoded = parse_ini_file( $language_file, true );
+			$decoded = array_change_key_case_recursive( $decoded, CASE_LOWER );
+		}
 
 		// File cannot be parsed due to format or syntax error in it.
 		if ( $decoded === NULL || empty($decoded) )
