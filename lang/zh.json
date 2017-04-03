@@ -1,7 +1,7 @@
 {
 	"language":"华文",
 	"author":"张智宇",
-	"site_title":"病人决策辅助",
+	"site_title":"患者决策指南",
 	"site_title_desc":"乳癌",
 	"begin":"开始",
 	"proceed":"接续",
@@ -12,7 +12,7 @@
 	"no":"不是",
 	"context":{
 		"main":{
-			"header":"病人决策辅助",
+			"header":"患者决策指南",
 			"subtitle":"这网站将提供一切有关于乳癌第一期与第二期的信息，包括乳癌的症状和各种治疗方法。 首先，请输入您的昵称，然后点击下面的“开始”按钮。"
 		},
 		"definition":{
