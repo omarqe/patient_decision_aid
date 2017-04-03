@@ -367,7 +367,7 @@ require( dirname(__FILE__) . '/load.php' );
 									<div class="radio no-padding">
 										<?php
 										_e( '<input type="radio" name="%1$s" id="%2$s" value="yes" data-required="%1$s">', $support_input_name, $support_input_id );
-										_e( '<label for="%1$s">%2$s</label>', $support_input_id, u('yes') );
+										_e( '<label for="%1$s">%2$s</label>', $support_input_id, u('yes_text') );
 										?>
 									</div>
 								</td>
@@ -375,7 +375,7 @@ require( dirname(__FILE__) . '/load.php' );
 									<div class="radio no-padding">
 										<?php
 										_e( '<input type="radio" name="%1$s" id="n_%2$s" value="yes" data-required="%1$s">', $support_input_name, $support_input_id );
-										_e( '<label for="n_%1$s">%2$s</label>', $support_input_id, u('no') );
+										_e( '<label for="n_%1$s">%2$s</label>', $support_input_id, u('no_text') );
 										?>
 									</div>
 								</td>
@@ -391,11 +391,11 @@ require( dirname(__FILE__) . '/load.php' );
 						<label data-label_required="ready_for_decision"><?php o("ready_decision_prompt"); ?></label>
 						<div class="radio" style="padding-bottom:5px">
 							<input type="radio" name="ready_for_decision" id="ready_for_decision_yes" data-required="ready_for_decision" value="yes">
-							<?php _e( '<label for="ready_for_decision_yes">%s</label>', u('yes') ); ?>
+							<?php _e( '<label for="ready_for_decision_yes">%s</label>', u('yes_text') ); ?>
 						</div>
 						<div class="radio">
 							<input type="radio" name="ready_for_decision" id="ready_for_decision_no" data-required="ready_for_decision" value="no">
-							<?php _e( '<label for="ready_for_decision_no">%s</label>', u('no') ); ?>
+							<?php _e( '<label for="ready_for_decision_no">%s</label>', u('no_text') ); ?>
 						</div>
 					</div>
 					
