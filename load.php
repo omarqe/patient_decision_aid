@@ -24,7 +24,7 @@ require_once( ABSPATH . INC . '/functions.php' );
  * 
  * @since 	0.1
  **/
-$GLOBALS['lang'] = new PDA_Language();
+$GLOBALS['lang'] = new PDA_Language('zh');
 
 if ( doing_ajax() ){
 	require_once( ABSPATH . '/process.php' );

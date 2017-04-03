@@ -30,7 +30,7 @@ require( dirname(__FILE__) . '/load.php' );
 <body>
 	<div id="ribbon_container">
 		<div class="ribbon animated fadeInDown">
-			We use cookie to ensure the best experience for you. Please read our <a>cookie use policy</a>.
+			<?php o( 'cookie_use', '', __( '<a>%s</a>', u('cookie_use_policy')) ); ?>
 			<a class="dismiss">&times;</a>
 		</div>
 	</div>
