@@ -19,6 +19,7 @@ define( 'INC'	 , '/includes' );
 require_once( ABSPATH . INC . '/class-language.php' );
 require_once( ABSPATH . INC . '/class-data.php' );
 require_once( ABSPATH . INC . '/functions.php' );
+require_once( ABSPATH . INC . '/pdflib/phpToPDF.php' );
 
 /**
  * Create language object.
