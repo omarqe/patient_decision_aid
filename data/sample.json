@@ -1,0 +1,33 @@
+{
+    "language": "en",
+    "nickname": "Leana",
+    "cancer_stage": 2,
+    "worries": [
+        "enquiry1",
+        "enquiry2",
+        "enquiry3"
+    ],
+    "knowing_important": {
+        "prefers": {
+            "surgery": [
+                "p_surgery_option1",
+                "p_surgery_option2"
+            ],
+            "no_surgery": null
+        },
+        "concern": [
+            "concern_option1",
+            "concern_option2",
+            "concern_option6"
+        ],
+        "support": {
+            "support_option1": false,
+            "support_option2": false,
+            "support_option3": true,
+            "support_option4": true,
+            "support_option5": true
+        },
+        "ready": "yes",
+        "preferred_treatment": "mastectomy"
+    }
+}

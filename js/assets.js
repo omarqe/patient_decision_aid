@@ -93,6 +93,7 @@
 			})
 			.on('click', invoke('next_page', false), this.nextPage)
 			.on('click', invoke('prev_page', false), this.prevPage)
+			.on('click', invoke('choose_stage', false), this.chooseStage)
 			.on('submit', invoke('choose_worry', false), this.chooseWorry)
 			.on('submit', invoke('concern', false), this.concern)
 			.on('submit', invoke('begin', false), this.begin);
@@ -100,6 +101,21 @@
 
 		getUnique: function(b){
 			return Object.id(b);
+		},
+
+		chooseStage: function(e){
+			e.preventDefault();
+			var t = $(this), s = t.data('stage');
+
+			$.get(getAction(), {stage:s,action:'choose_stage'}, function(o){
+				respondAJAX(o);
+
+				if ( typeof o.status !== 'undefined' &&  o.status == true ){
+					PDA.goToPage(t, 'next');
+					return true;
+				}
+			}, 'JSON', true)
+			.fail(function(e){ console.error(e.responseText) });
 		},
 
 		block: function( element, template, data ){
@@ -189,9 +205,8 @@
 
 		concern: function(e){
 			e.preventDefault();
-			var t = $(this), d = parseQuery(t.serialize());
-
-			d.action = 'concern';
+			var t = $(this), d = t.serialize();
+			
 			$.post(getAction(), d, function(o){
 				var s = o.status || false;
 				respondAJAX(o);
@@ -241,7 +256,6 @@
 			var t = $(this), d = parseQuery(t.serialize());
 
 			d.action = 'begin';
-			console.log(d);
 			$.post(getAction(), d, function(o){
 				var s = o.status || false;
 				respondAJAX(o);
@@ -262,7 +276,8 @@
 					t.find('.animated').removeClass('animated shake');
 					PDA.bindTo('nickname', d.nickname);
 				}
-			}, 'JSON', true);
+			}, 'JSON', true)
+			.fail(function(e){ console.error(e.responseText) });
 		},
 
 		alert: function(m,y,i){

@@ -88,7 +88,7 @@ require( dirname(__FILE__) . '/load.php' );
 
 								<?php if ( $i < 3 ): ?>
 								<div class="btn-action">
-									<a class="btn btn-pink btn-sm" data-invoke="next_page"><?php _e("%s &rarr;", u('see_options')); ?></a>
+									<a class="btn btn-pink btn-sm" data-stage="<?php _e($i); ?>" data-invoke="choose_stage"><?php _e("%s &rarr;", u('see_options')); ?></a>
 								</div>
 								<?php endif; ?>
 							</div>
@@ -374,7 +374,7 @@ require( dirname(__FILE__) . '/load.php' );
 								<td style="width:10%">
 									<div class="radio no-padding">
 										<?php
-										_e( '<input type="radio" name="%1$s" id="n_%2$s" value="yes" data-required="%1$s">', $support_input_name, $support_input_id );
+										_e( '<input type="radio" name="%1$s" id="n_%2$s" value="no" data-required="%1$s">', $support_input_name, $support_input_id );
 										_e( '<label for="n_%1$s">%2$s</label>', $support_input_id, u('no_text') );
 										?>
 									</div>
@@ -421,6 +421,7 @@ require( dirname(__FILE__) . '/load.php' );
 				</div>
 
 				<div class="btn-action text-right">
+					<input type="hidden" name="action" value="concern">
 					<button class="btn btn-pink btn-sm">Continue &rarr;</button>
 				</div>
 				</form>
