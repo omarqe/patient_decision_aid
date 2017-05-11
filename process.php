@@ -27,7 +27,7 @@ switch( $action ){
 		if ( empty($worries) || !is_array($worries) )
 			send_response( u('select_worry'), "red" );
 			
-		$worry_answers = array();
+		$worry_answers = $worry_data = array();
 		foreach ( $worries as $i => $worry_n ){
 			$worry = "enquiry{$worry_n}";
 			if ( u($worry) == "undefined" )
@@ -40,9 +40,11 @@ switch( $action ){
 				"alternative" => u("{$worry}_alternative"),
 				"none" => u("{$worry}_no_treatment")
 			);
+
+			$worry_data[] = $worry;
 		}
 
-		if ( !save_data(array('worries' => array_keys($worry_answers))) )
+		if ( !save_data(array("worries" => $worry_data)) )
 			send_response( "Sorry, but we can't save your data at the moment. Please try again.", "red" );
 
 		send_response( "", "", true, compact('worry_answers') );
@@ -52,10 +54,12 @@ switch( $action ){
 		$nickname = ucwords( parse_arg('nickname', $_POST) );
 		$shake = 'input[name=nickname]';
 
+		if ( empty($nickname) )
+			send_response( "Uh-oh, sorry but may we know your name before proceed?", "red", false, compact('shake') );
+
 		$nick_split = explode(' ', $nickname);
 		if ( count($nick_split) > 1 ){
 			$nickname = parse_arg( 0, $nickname );
-
 			if ( strlen($nickname) > 15 )
 				$nickname = substr( $nickname, 0, 15 );
 		}
@@ -63,7 +67,7 @@ switch( $action ){
 		if ( ! save_data(compact('nickname')) )
 			send_response( sprintf("We are sorry %s, but there's an error while processing your request. Please refresh and try again.", $nickname), "red", false );
 
-		send_response( "", "", true, compact('shake') );
+		send_response( "", "", true );
 		exit;
 
 	case "choose_stage":
