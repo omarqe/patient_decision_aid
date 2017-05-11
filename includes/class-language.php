@@ -47,6 +47,18 @@ function loc( $key, $default = 'undefined' ){
 	return $lang->loc( $key, $default, array_slice(func_get_args(), 2) );
 }
 
+/**
+ * Get the available languages.
+ * 
+ * @see 	PDA_Language::get_available_langs()
+ * @return 	array
+ * @since 	0.2
+ **/
+function get_available_langs(){
+	global $lang;
+	return $lang->get_available_langs();
+}
+
 class PDA_Language {
 	/**
 	 * Available languages. The language codes are referred to the standard ISO 639-1 abbreviations.
@@ -59,8 +71,7 @@ class PDA_Language {
 		"en" => "en-GB.ini",	// English (British)
 		"ms" => "ms.ini",		// Malay
 		"zh" => "zh.ini",		// Chinese
-		"bn" => "bn.ini",		// Bangladesh
-		"ta" => "ta.ini"	// Tamil
+		"ta" => "ta.ini"		// Tamil
 	);
 
 	/**
@@ -102,8 +113,7 @@ class PDA_Language {
 	/**
 	 * Constructor function.
 	 * 
-	 * 
-	 * 
+	 * @since 	0.1
 	 **/
 	public function __construct( $lang = 'en' ){
 		$abspath = defined('ABSPATH') ? ABSPATH : dirname(dirname(__FILE__));
@@ -136,6 +146,16 @@ class PDA_Language {
 	}
 
 	/**
+	 * Get the available languages.
+	 * 
+	 * @return 	array
+	 * @since 	0.2
+	 **/
+	public function get_available_langs(){
+		return $langs;
+	}
+
+	/**
 	 * Get the parsed language data.
 	 * 
 	 * @return 	array
@@ -152,7 +172,7 @@ class PDA_Language {
 	 * @since 	0.1
 	 **/
 	public function get_current_lang(){
-		return $this->lang;
+		return array_keys( (array)$this->langs );
 	}
 
 	/**
