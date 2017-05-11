@@ -97,7 +97,11 @@ class PDA_Data {
 			)
 		);
 
+<<<<<<< HEAD
 		$data_json = json_encode( $data, JSON_PRETTY_PRINT );
+=======
+		$data_json = json_encode( $data );
+>>>>>>> master
 
 		if ( !file_put_contents($this->data_file , $data_json) )
 			die( "Data file is not generated." );

@@ -17,6 +17,7 @@ define( 'ABSPATH', dirname(__FILE__) );
 define( 'INC'	 , '/includes' );
 
 require_once( ABSPATH . INC . '/class-language.php' );
+require_once( ABSPATH . INC . '/class-data.php' );
 require_once( ABSPATH . INC . '/functions.php' );
 
 /**
@@ -25,6 +26,13 @@ require_once( ABSPATH . INC . '/functions.php' );
  * @since 	0.1
  **/
 $GLOBALS['lang'] = new PDA_Language();
+
+/**
+ * Create data object.
+ * 
+ * @since 	0.2
+ **/
+$GLOBALS['data'] = new PDA_Data();
 
 if ( doing_ajax() ){
 	require_once( ABSPATH . '/process.php' );
