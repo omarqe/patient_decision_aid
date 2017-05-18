@@ -133,6 +133,24 @@ switch( $action ){
 		send_response("", "", true);
 		exit;
 
+		//pdf try
+
+		require('fpdf.php');
+
+		$str_data = file_get_contents("sample.json");
+		$data = json_decode($str_data,true);
+
+		ob_end_clean();
+		ob_start();
+		$pdf = new FPDF();
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',16);
+		$pdf->Cell(40,10,$data["nickname"]);
+		$pdf->Cell(50,10,$data["cancer_stage"]);
+		$pdf->Output('D','filename.pdf');
+		ob_end_flush();
+
+		//end of pdf try
 	// Process failed..
 	default:
 		send_response( u("ajax_error"), "red" );
