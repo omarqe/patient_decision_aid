@@ -78,10 +78,10 @@ class PDA_Language {
 	 * Default language.
 	 * 
 	 * @var 	string
-	 * @access 	protected
+	 * @access 	public
 	 * @since 	0.1
 	 **/
-	protected $lang = "en";
+	public $lang = "en";
 
 	/**
 	 * Default language files path.
