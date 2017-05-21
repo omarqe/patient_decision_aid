@@ -11,10 +11,10 @@
  **/
 
 require_once( dirname(__FILE__) . '/load.php' );
+init_locale( 'worries', 'definition', 'treatment', 'concerns' );
 
 $userdata = get_data();
-
-init_locale( 'worries', 'definition', 'treatment', 'concerns' );
+$nickname = parse_arg('nickname', $userdata);
 ?>
 <style>
 h1, h2, h3, h4, h5, h6, p {
@@ -35,14 +35,14 @@ span.pink {
 }
 
 .section {
-	margin:20px 0
+	margin:20px 0;
 }
 
 ul li {
 	padding: 0 0 10px 10px
 }
 </style>
-<page backtop="15mm" backbottom="15mm" backleft="15mm" backright="15mm">
+<page backtop="15mm" backbottom="20mm" backleft="15mm" backright="15mm">
 	<page_footer>
 		<table style="width:100%">
 			<tr>
@@ -66,43 +66,71 @@ ul li {
 	</div>
 	<table style="width:100%; margin-top:5px; margin-bottom:40px;">
 		<tr>
-			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px;"><?php echo strtoupper( parse_arg('nickname', $userdata) ); ?></td>
+			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px;"><?php echo strtoupper( $nickname ); ?></td>
 			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px; text-align:right"><?php printf( 'CANCER STAGE %s', parse_arg('cancer_stage', $userdata) ); ?></td>
 		</tr>
 	</table>
 
 	<div class="section">
-		<h1 class="heading">I. What is this for?</h1>
-		<p>Hi <span class="pink">Nana Lina,</span> this report is generated specifically for you. What you see in this report is based on what responses to the PDA website. You can share this report to your doctor further guidance.</p>
+		<h1 class="heading">What is this for?</h1>
+		<?php printf( 'Hi <span class="pink">%s,</span> this report is generated specifically for you. What you see in this report is based on what responses to the PDA website. You can share this report to your doctor for further guidance.', $nickname ); ?>
 	</div>
+
+	<?php if ( !empty(parse_arg('worries',$userdata)) && $worries = parse_arg('worries',$userdata) ): ?>
+	<div class="section" style="margin-bottom:0">
+		<h1 class="heading">What are you concern about?</h1>
+		<ul>
+			<?php
+			foreach( $worries as $worry_key ){
+				printf( '<li>%s</li>', u($worry_key) );
+			} ?>
+		</ul>
+	</div>
+	<?php endif; ?>
 
 	<?php
 	$knowing_important = parse_arg('knowing_important', $userdata);
-	list( $prefers, $concern, $support, $ready, $preferred_treatment ) = get_list(
-		['prefers', 'concern', 'support', 'ready', 'preferred_treatment'],
+	list( $prefers, $concern, $support, $ready, $preferred_treatment, $extras ) = get_list(
+		['prefers', 'concern', 'support', 'ready', 'preferred_treatment', 'extras'],
 		$knowing_important
 	);
-
-
 	?>
 
-
-	<div class="section">
-		<h1 class="heading">Do prefer surgery?</h1>
+	<?php if ( !empty(parse_arg('surgery',$prefers)) || !empty(parse_arg('no_surgery',$prefers)) ): ?>
+	<div class="section" style="margin-bottom:0">
+		<h1 class="heading">Do I prefer surgery?</h1>
 		<?php
-		if ( is_array($prefers) ){
-			list( $prefer_surgery, $prefer_no_surgery ) = get_list(['surgery', 'no_surgery'], $prefers);
+		foreach ( $prefers as $surgery_bool => $surgery_keys ){
+			if ( empty($surgery_keys) || !is_array($surgery_keys) ) continue;
 
-			foreach ( $prefer_surgery as $key ){
-			}
+			$surgery_bool_heading = $surgery_bool == 'surgery'
+				? "I prefer surgery because..."
+				: "I don't prefer surgery because...";
+
+			printf( '<h4 style="margin:5px 0">%s</h4>', $surgery_bool_heading );
+			echo '<ul>';
+			foreach ( $surgery_keys as $surgery_key )
+				printf( '<li>%s</li>', u($surgery_key) );
+			echo '</ul>';
 		}
 		?>
 	</div>
+	<?php endif; ?>
 
+	<?php if ( is_array($concern) && !empty($concern) ): ?>
+	<div class="section" style="margin-bottom:0">
+		<h1 class="heading">I am concern ...</h1>
+		<?php
+		echo '<ul>';
+		foreach ( $concern as $concern_key )
+			printf( '<li>%s</li>', u($concern_key) );
+		echo '</ul>';
+		?>
+	</div>
+	<?php endif; ?>
 
-
-	<div class="section">
-		<h1 class="heading">II. Do you need more support?</h1>
+	<div class="section" style="margin-bottom:0">
+		<h1 class="heading">Do I need more support?</h1>
 		<ul style="margin:0; padding:0">
 			<?php foreach( (array)parse_arg('support', $knowing_important) as $key => $value ): if ($value === false) continue; ?>
 				<li><?php o($key); ?></li>
@@ -110,31 +138,20 @@ ul li {
 		</ul>
 	</div>
 
-	<!-- <table style="width: 80%;border: solid 1px #5544DD; border-collapse: collapse" align="center">
-		<thead>
-			<tr>
-				<th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Header 1</th>
-				<th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Header 2</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td style="width: 30%; text-align: left; border: solid 1px #55DD44">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius libero et purus sagittis, tincidunt ultrices tortor convallis. Nunc consectetur non mi id eleifend. Nam vehicula mattis imperdiet. Etiam consectetur libero turpis, non commodo risus feugiat ut. Maecenas in dolor sollicitudin, tincidunt turpis sed, iaculis massa. Phasellus malesuada molestie nunc eget lobortis. In pharetra, nisl ut ornare dictum, mi mauris iaculis nulla, nec interdum justo justo a nulla.
-				</td>
-				<td style="width: 70%; text-align: left; border: solid 1px #55DD44">
-					Donec aliquet lectus ac ligula pretium malesuada. Aliquam iaculis orci dolor, eu pellentesque purus facilisis ac. Morbi in mi non arcu pharetra molestie. Suspendisse non nulla diam. Pellentesque tempus a lacus in accumsan. Nullam ut mi nibh. Proin dignissim orci quis velit vehicula, quis congue mauris ornare. Aliquam posuere interdum tortor eget tempor.
-				</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Footer 1</th>
-				<th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Footer 2</th>
-			</tr>
-		</tfoot>
-	</table> -->
+	<div class="section">
+		<h1 class="heading">Am I ready to make decision? <span style="font-size:21px" class="pink"><?php o( $ready == 'yes' ? 'yes_text' : 'no_text' ); ?>.</span></h1>
+	</div>
+
+	<?php if ( $ready == 'yes' ): ?>
+	<div class="section">
+		<h1 class="heading">If I am ready to make decision, I would prefer <span style="font-size:21px" class="pink"><?php echo ucfirst(u($preferred_treatment)); ?></span> as a treatment.</h1>
+	</div>
+	<?php endif; ?>
+
+	<?php if ( !empty($extras) ): ?>
+	<div class="section" style="background:#eee; padding:30px">
+		<h1 class="heading">Extra enquiries from me ..</h1>
+		<p><?php echo $extras; ?></p>
+	</div>
+	<?php endif; ?>
 </page>
-<!-- <page pageset="old">
-	Nouvelle page !!!!
-</page> -->
