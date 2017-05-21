@@ -10,7 +10,8 @@
  * @package		PDA
  **/
 
-session_start();
+if ( session_status() == PHP_SESSION_NONE )
+	session_start();
 
 define( 'PDA_READY', true );
 define( 'ABSPATH', dirname(__FILE__) );
