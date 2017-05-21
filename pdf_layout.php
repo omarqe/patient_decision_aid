@@ -104,7 +104,7 @@ ul li {
 
 			$surgery_bool_heading = $surgery_bool == 'surgery'
 				? "I prefer surgery because..."
-				: "I don't prefer surgery because...";
+				: "I prefer not to have surgery because...";
 
 			printf( '<h4 style="margin:5px 0">%s</h4>', $surgery_bool_heading );
 			echo '<ul>';
