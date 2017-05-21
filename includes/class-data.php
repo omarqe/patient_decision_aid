@@ -189,7 +189,8 @@ class PDA_Data {
 		if ( empty($data) )
 			return false;
 
-		$data = json_decode( $data, true );
+		if ( is_string($data) )
+			$data = json_decode( $data, true );
 		if ( is_null($data) || !$data )
 			return false;
 
