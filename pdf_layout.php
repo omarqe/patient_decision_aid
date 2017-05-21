@@ -47,11 +47,10 @@ ul li {
 		<table style="width:100%">
 			<tr>
 				<td style="width:50%; font-size:14px; padding:10px 15mm 5mm; color:#666;">www.breastcancerpda.com</td>
-				<td style="width:50%; font-size:14px; padding:10px 15mm 5mm; color:#666; text-align:right">Monday, 22 May 2016</td>
+				<td style="width:50%; font-size:14px; padding:10px 15mm 5mm; color:#666; text-align:right"><?php echo date('l, j F Y \a\t H:ia'); ?></td>
 			</tr>
 		</table>
 	</page_footer>
-
 
 	<div style="background:#EC407A; padding:35px 35px 30px; padding-right:0; position:relative;">
 		<table style="width:100%">
