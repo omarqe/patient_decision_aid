@@ -24,11 +24,11 @@ switch( $action ){
 		init_locale( 'ajax', 'worries' );
 
 		$worries = parse_arg( 'worries', $_POST );
-		if ( empty($worries) || !is_array($worries) )
-			send_response( u('select_worry'), "red" );
+		// if ( empty($worries) || !is_array($worries) )
+		// 	send_response( u('select_worry'), "red" );
 			
 		$worry_answers = $worry_data = array();
-		foreach ( $worries as $i => $worry_n ){
+		foreach ( (array)$worries as $i => $worry_n ){
 			$worry = "enquiry{$worry_n}";
 			if ( u($worry) == "undefined" )
 				continue;

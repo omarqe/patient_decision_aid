@@ -186,16 +186,30 @@
 
 					c.html(''); // Clear the previous state.
 
-					$.each(o.worry_answers, function(i,w){
+					if ( o.worry_answers.length > 0 ){
+						$.each(o.worry_answers, function(i,w){
+							c.append(
+								$('<tr/>')
+								.append($('<td/>',{class:'enquiry'}).text(w.worry))
+								.append($('<td/>').text(w.lumpectomy))
+								.append($('<td/>').text(w.mastectomy))
+								.append($('<td/>').text(w.alternative))
+								.append($('<td/>').text(w.none))
+							);
+						});
+					} else {
 						c.append(
 							$('<tr/>')
-							.append($('<td/>',{class:'enquiry'}).text(w.worry))
-							.append($('<td/>').text(w.lumpectomy))
-							.append($('<td/>').text(w.mastectomy))
-							.append($('<td/>').text(w.alternative))
-							.append($('<td/>').text(w.none))
-						);
-					});
+							.append(
+								$('<td/>', {colspan:5,style:'text-align:center'})
+								.append( $('<p/>').text('Nothing to compare. Please go back to the previous page and try again.') )
+								.append(
+									$('<div/>', {class:'btn-action',style:'margin-top:10px'})
+									.append( $('<a/>',{class:'btn btn-dark btn-xs','data-invoke':'prev_page'}).html('&larr; Previous') )
+								)
+							)
+						)
+					}
 				}
 				c.unblock();
 			}, 'JSON', true)
