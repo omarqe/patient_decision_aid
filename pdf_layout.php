@@ -1,3 +1,21 @@
+<?php
+/**
+ * Patient Decision Aid (PDA) for Breast Cancer.
+ * 
+ * This work is originally coded by @omarqe and the team members. Please keep this copyright
+ * notice for legal use. Some of the codes are derived from @omarqe's previous project, Payster.
+ * 
+ * @author 		Omar Mokhtar Al-Asad (@omarqe)
+ * @link 		http://www.payster.me
+ * @package		PDA
+ **/
+
+require_once( dirname(__FILE__) . '/load.php' );
+
+$userdata = get_data();
+
+init_locale( 'worries', 'definition', 'treatment', 'concerns' );
+?>
 <style>
 h1, h2, h3, h4, h5, h6, p {
 	margin: 0 0 8px
@@ -48,8 +66,8 @@ ul li {
 	</div>
 	<table style="width:100%; margin-top:5px; margin-bottom:40px;">
 		<tr>
-			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px;">NANA LINA</td>
-			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px; text-align:right">CANCER STAGE 1</td>
+			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px;"><?php echo strtoupper( parse_arg('nickname', $userdata) ); ?></td>
+			<td style="width:50%; font-weight:bold; color:#EC407A; font-size:18px; text-align:right"><?php printf( 'CANCER STAGE %s', parse_arg('cancer_stage', $userdata) ); ?></td>
 		</tr>
 	</table>
 
@@ -58,12 +76,37 @@ ul li {
 		<p>Hi <span class="pink">Nana Lina,</span> this report is generated specifically for you. What you see in this report is based on what responses to the PDA website. You can share this report to your doctor further guidance.</p>
 	</div>
 
+	<?php
+	$knowing_important = parse_arg('knowing_important', $userdata);
+	list( $prefers, $concern, $support, $ready, $preferred_treatment ) = get_list(
+		['prefers', 'concern', 'support', 'ready', 'preferred_treatment'],
+		$knowing_important
+	);
+
+
+	?>
+
+
 	<div class="section">
-		<h1 class="heading">II. What are you worried about?</h1>
+		<h1 class="heading">Do prefer surgery?</h1>
+		<?php
+		if ( is_array($prefers) ){
+			list( $prefer_surgery, $prefer_no_surgery ) = get_list(['surgery', 'no_surgery'], $prefers);
+
+			foreach ( $prefer_surgery as $key ){
+			}
+		}
+		?>
+	</div>
+
+
+
+	<div class="section">
+		<h1 class="heading">II. Do you need more support?</h1>
 		<ul style="margin:0; padding:0">
-			<li>How long will I live?</li>
-			<li>Will the cancer come back?</li>
-			<li>Will I need another operation?</li>
+			<?php foreach( (array)parse_arg('support', $knowing_important) as $key => $value ): if ($value === false) continue; ?>
+				<li><?php o($key); ?></li>
+			<?php endforeach; ?>
 		</ul>
 	</div>
 
