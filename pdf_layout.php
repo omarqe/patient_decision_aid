@@ -11,6 +11,8 @@
  **/
 
 require_once( dirname(__FILE__) . '/load.php' );
+
+$lang = new PDA_Language('en');
 init_locale( 'worries', 'definition', 'treatment', 'concerns' );
 
 $userdata = get_data();
