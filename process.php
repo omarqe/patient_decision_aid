@@ -122,7 +122,8 @@ switch( $action ){
 			"concern" => $postdata['concerns'],
 			"support" => $support_options,
 			"ready" => $postdata['ready_for_decision'],
-			"preferred_treatment" => $postdata['ready_for_treatment']
+			"preferred_treatment" => $postdata['ready_for_treatment'],
+			"extras" => $postdata['extras']
 		);
 
 		//send_response(print_p($structure,true), 'green');
