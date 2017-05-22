@@ -138,7 +138,7 @@ require( dirname(__FILE__) . '/load.php' );
 					foreach ( $treatment_options as $treatment_key => $treatment_data ):
 						list( $desc, $points ) = get_list( ['desc', 'points'], $treatment_data );
 					?>
-					<div class="col-md-3 grid-item">
+					<div class="col-md-6 grid-item">
 						<div class="white-card hoverable">
 							<div class="content text-left">
 								<?php
@@ -443,7 +443,7 @@ require( dirname(__FILE__) . '/load.php' );
 					<br class="separator small" style="margin-bottom:30px">
 					<div class="small" style="margin-bottom:5px">
 						<div class="checkbox">
-							<input type="checkbox" name="accept_data_keep" id="accept_data_keep" checked>
+							<input type="checkbox" name="accept_data_keep" id="accept_data_keep">
 							<label for="accept_data_keep"><?php o('agree_data_keep'); ?></label>
 						</div>
 					</div>
