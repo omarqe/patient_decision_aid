@@ -447,7 +447,7 @@ require( dirname(__FILE__) . '/load.php' );
 							<label for="accept_data_keep"><?php o('agree_data_keep'); ?></label>
 						</div>
 					</div>
-					<a class="btn btn-pink"><i class="fa fa-download"></i> Download</a>
+					<a class="btn btn-pink" href="./download.php" target="_blank"><i class="fa fa-download"></i> Download</a>
 				</div>
 			</div>
 		</div>
